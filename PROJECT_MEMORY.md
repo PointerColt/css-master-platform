@@ -1,620 +1,69 @@
-# PROJECT_MEMORY.md
-
-> Version: 1.0
-> Project: CSS Master Platform
-> Stack: HTML + CSS + Vanilla JavaScript
-> Status: Active Development
-
+# PROJECT: CSS Master Platform
+ 
+## Overview
+An interactive CSS learning platform — live code editor, auto-graded quizzes, topic-by-topic lessons. Free, no paywall. Built as a learning project by a first-year engineering student, alongside AI as a coding/teaching partner (not blind copy-paste).
+ 
+## Stack
+Pure HTML + CSS + Vanilla JS (current phase). Planned: React rebuild (Phase 9), then Node + Express + MongoDB backend (Phase 10).
+ 
+## Teaching Style Rules (apply every session)
+- Explain the concept/theory first, syntax second — never syntax first.
+- One step at a time — wait for confirmation before continuing.
+- Concise answers, no unnecessary words.
+- Tell the user exactly which file/line to change and why — let them make the edit themselves when they ask for that.
+- Never assume prior knowledge, but never dumb down real architecture either.
+- Flag real bugs/bad patterns proactively, don't just answer the literal question asked.
+## Architecture (established, do not casually change)
+- SPA: `index.html` never reloads. Topics load via `fetch()` into `#dynamic-content-area`.
+- One responsibility per JS file: `script.js` (navigation controller only), `exercise.js` (quiz only), `workspace.js` (live editor only).
+- CSS split by component, all colors driven through `variables.css` — never hardcode hex values in component CSS files.
+- JS controls state (classes, disabled, visibility) — CSS controls appearance. Never `element.style.color = ...` for anything semantic.
+- File naming: lowercase kebab-case only (`main-content.css`, not `mainContent.css` or `Base.css`) — case-sensitive hosts (Netlify/Vercel) will break on inconsistent casing.
+## Theme
+**Charcoal & Amber** — warm off-white background, charcoal text, amber accent used sparingly (links, buttons, active states only — never as a heading color or background fill). Chosen over a red/champagne "Harvard" theme for lower reading fatigue over long sessions and stronger recruiter/engineering-credibility signal.
+ 
+Tokens (`css/variables.css`):
+```
+--bg-base: #F5F1E8
+--bg-surface: #FFFFFF
+--text-primary: #1C1917
+--text-secondary: #6B6560
+--accent-primary: #B45A08
+--accent-hover: #8A4406
+--border-color: #E4DFD3
+```
+`color-scheme: light` is set (in both `<meta>` and `:root`) to stop Android Chrome's Force Dark from repainting the page.
+ 
+## Completed So Far
+- [x] Sidebar + dynamic topic loading (fetch-based SPA)
+- [x] Charcoal & Amber theme applied across all components
+- [x] File naming cleaned up (kebab-case, dead `style.css` removed, `Base.css` casing bug fixed)
+- [x] Quiz: locks after answering, no hover/select bugs, disabled-state styling
+- [x] Quiz: question-to-question Previous/Next navigation (multi-question support)
+- [x] Quiz: Next button becomes "Try Again" on last question, resets cleanly
+- [x] Quiz: Next only appears after the current question is answered
+- [x] Live code editor: real validation via `getComputedStyle` (fixed `#fff` vs `#ffffff` bug)
+- [x] Live code editor: workspace click handler properly scoped (no stray `document.getElementById`)
+- [x] Live code editor: unified color palette (removed neon-green/white/orange clash)
+- [x] Topic-to-topic Previous/Next navigation (reuses sidebar's existing click logic)
+- [x] Fixed `.reading-zone` case-mismatch bug (class was `Reading-Zone` in HTML, never matched CSS)
+- [x] Fixed `.layout-wrapper` missing `width: 100%` (flex-parent shrink-to-fit bug causing scrollbar to sit inset from true edge)
+- [x] Git initialized, `.gitignore` added (pre-empting `node_modules`/`.env` for later phases)
+- [x] README.md written
+## Known Gaps / Not Yet Done
+- [ ] Instruction text says `.signup-buttons` (plural) but actual class is `.signup-button` — cosmetic mismatch, not yet fixed
+- [ ] Only `topic-1-1.html` exists — sidebar links to `topic-1-2.html`, which doesn't exist yet (will show fetch error)
+- [ ] No progress tracking yet (localStorage) — Phase 5, not started
+- [ ] No data-driven content (JSON-based lessons) yet — Phase 3, not started
+- [ ] Accessibility/performance pass not done yet — Phase 7
+## Current Status
+**Active phase:** Building out Chapter 1 content + polishing Topic 1.1
+**Next likely task:** Write `topic-1-2.html` content, or begin Phase 3 (move content to JSON)
+ 
+## Notes / Decisions Log
+- Chose vanilla JS over jumping to React early, to build real fundamentals first.
+- Decided charcoal/amber over red/champagne after a UX-psychology discussion (color-semantic conflict with existing green/red correct/wrong states, reading fatigue over long sessions).
+- Deliberately kept the code editor's dark IDE-style background even though the rest of the site is light — matches convention (GitHub, VS Code, MDN).
 ---
-
-# 1. Project Vision
-
-Build a production-quality learning platform similar to:
-
-- W3Schools
-- freeCodeCamp
-- Codecademy
-- GeeksForGeeks
-
-using only:
-
-- HTML
-- CSS
-- Vanilla JavaScript
-
-No frameworks until the platform is mature.
-
-Primary goals:
-
-- Learn HTML, CSS and JavaScript deeply.
-- Build a real product instead of a practice project.
-- Follow professional software engineering principles.
-- Make adding hundreds of lessons easy.
-- Create an excellent learning experience.
-
----
-
-# 2. Teaching Style (VERY IMPORTANT)
-
-This project is also my learning journey.
-
-The assistant should act as:
-
-- Senior Frontend Engineer
-- Software Architect
-- Mentor
-
-Not as a code generator.
-
-Always:
-
-✔ Explain WHY before HOW.
-
-✔ Keep answers concise.
-
-✔ Avoid unnecessary words.
-
-✔ Never reduce technical quality.
-
-✔ Don't simplify architecture just because it is advanced.
-
-✔ Introduce professional concepts when appropriate.
-
-✔ Never dump huge amounts of code.
-
-✔ Teach one concept at a time.
-
-For every concept explain:
-
-1. Problem
-2. Theory
-3. Implementation
-4. Best Practice
-5. Common Mistakes
-6. Scalability
-
----
-
-# 3. Development Philosophy
-
-Never code first.
-
-Always follow:
-
-Understand
-
-↓
-
-Design
-
-↓
-
-Implement
-
-↓
-
-Review
-
-↓
-
-Refactor
-
-Never patch bugs randomly.
-
-Always understand WHY they happen.
-
----
-
-# 4. Project Architecture
-
-Project type:
-
-Vanilla JavaScript SPA (Single Page Application)
-
-Browser opens only:
-
-index.html
-
-Tutorial pages are loaded dynamically.
-
-Browser never leaves index.html.
-
-Flow:
-
-index.html
-
-↓
-
-User clicks topic
-
-↓
-
-fetch(topic.html)
-
-↓
-
-Insert HTML into #content-area
-
-↓
-
-Initialize Features
-
----
-
-# 5. File Responsibilities
-
-## index.html
-
-Responsible for:
-
-- Navbar
-- Sidebar
-- Content Area
-- Footer
-- Loading CSS
-- Loading JS
-
-Never stores tutorial content.
-
----
-
-## script.js
-
-Application Controller
-
-Responsible only for:
-
-- Sidebar events
-- Navigation
-- fetch()
-- Loading topic HTML
-- Calling initialization functions
-
-Should NEVER contain:
-
-- Exercise logic
-- Code editor logic
-- Theme logic
-- Feature-specific code
-
-It coordinates.
-
-It does not implement features.
-
----
-
-## exercise.js
-
-Responsible only for:
-
-- Quiz
-- Option selection
-- Correct/Wrong state
-- Progress
-- Score
-- Navigation
-- Feedback
-
-Nothing else.
-
----
-
-## editor.js
-
-Responsible only for:
-
-- Code editor
-- Run Code
-- Reset
-- Live Preview
-- Future Monaco/CodeMirror
-
----
-
-## theme.js (Future)
-
-Responsible only for:
-
-- Dark Mode
-- Light Mode
-- Font Size
-- User Preferences
-
----
-
-# 6. Software Engineering Principles
-
-Every file has ONE responsibility.
-
-Every function has ONE responsibility.
-
-Every component has ONE responsibility.
-
-Follow:
-
-Single Responsibility Principle (SRP)
-
-Don't mix unrelated logic.
-
----
-
-# 7. DOM Timing
-
-Important concept learned.
-
-JavaScript cannot interact with elements that do not exist.
-
-Wrong:
-
-script.js
-
-↓
-
-querySelector()
-
-↓
-
-Element doesn't exist.
-
-Correct:
-
-fetch()
-
-↓
-
-Insert HTML
-
-↓
-
-Initialize Feature
-
-↓
-
-Attach Events
-
-Golden Rule:
-
-Whenever using
-
-document.querySelector()
-
-Always ask:
-
-"Does this element exist in the DOM at this moment?"
-
----
-
-# 8. Feature Initialization
-
-Current architecture goal:
-
-fetch()
-
-↓
-
-content.innerHTML = html
-
-↓
-
-initializeFeatures()
-
-↓
-
-initializeExercise()
-
-initializeEditor()
-
-initializeTabs()
-
-initializeCopyButtons()
-
-Every future feature should have its own initialization function.
-
-Never execute feature logic before HTML exists.
-
----
-
-# 9. Exercise System
-
-Current structure:
-
-exercise-page
-
-↓
-
-exercise-container
-
-↓
-
-exercise-header
-
-↓
-
-question-card
-
-↓
-
-options-container
-
-↓
-
-feedback-message
-
-↓
-
-exercise-navigation
-
-Only exercise-container owns:
-
-- background
-- border
-- radius
-- shadow
-
-question-card is layout only.
-
-Avoid nested cards.
-
----
-
-# 10. Quiz Decisions
-
-Correct option:
-
-data-correct="true"
-
-Never compare button text.
-
-Always use:
-
-button.dataset.correct
-
-JavaScript only changes classes.
-
-CSS controls appearance.
-
-Classes:
-
-.selected
-
-.correct
-
-.wrong
-
----
-
-# 11. CSS Philosophy
-
-Prefer:
-
-Reusable classes
-
-Avoid:
-
-Repeated CSS
-
-Think in components.
-
-Every section should be reusable.
-
----
-
-# 12. JavaScript Philosophy
-
-JavaScript should control:
-
-Behavior
-
-Never appearance.
-
-CSS controls appearance.
-
-JavaScript changes state.
-
-Example:
-
-button.classList.add("correct")
-
-instead of
-
-button.style.background = "green"
-
----
-
-# 13. Current Progress
-
-Completed:
-
-✔ Sidebar
-
-✔ Dynamic topic loading
-
-✔ Exercise layout
-
-✔ Exercise container
-
-✔ Header
-
-✔ Question card
-
-✔ Options
-
-✔ Feedback placeholder
-
-✔ Navigation buttons
-
-✔ Initial architecture planning
-
----
-
-# 14. Current Learning
-
-Learned:
-
-✔ SPA architecture
-
-✔ fetch()
-
-✔ DOM
-
-✔ Event Listeners
-
-✔ DOM Timing
-
-✔ Single Responsibility Principle
-
-✔ Dynamic HTML loading
-
-✔ Why querySelector() failed
-
-✔ Feature initialization
-
----
-
-# 15. Current Issue
-
-Exercise JS fails because:
-
-script.js executes before topic HTML exists.
-
-Solution:
-
-Initialize features AFTER fetch() inserts HTML.
-
-Do NOT place feature logic inside script.js.
-
----
-
-# 16. Immediate Roadmap
-
-1.
-Review script.js completely.
-
-2.
-Understand every function.
-
-3.
-Locate fetch().
-
-4.
-Improve loading architecture.
-
-5.
-Create initializeFeatures().
-
-6.
-Build exercise.js properly.
-
-7.
-Build editor.js.
-
-No shortcuts.
-
----
-
-# 17. Long-Term Roadmap
-
-Exercise System
-
-Code Editor
-
-Search
-
-Bookmarks
-
-Progress Tracking
-
-Notes
-
-Theme
-
-Accessibility
-
-Performance
-
-SEO
-
-Backend
-
-Authentication
-
-Database
-
----
-
-# 18. Coding Rules
-
-Semantic HTML first.
-
-Reusable CSS.
-
-Clean JavaScript.
-
-Meaningful names.
-
-No magic numbers.
-
-No duplicate code.
-
-No inline styles.
-
-No unnecessary comments.
-
-Architecture before implementation.
-
----
-
-# 19. UI Philosophy
-
-UI should feel comparable to:
-
-- W3Schools
-- freeCodeCamp
-- Codecademy
-
-Not by copying.
-
-By following:
-
-- consistency
-- spacing
-- accessibility
-- responsiveness
-- maintainability
-
----
-
-# 20. Working Rules
-
-The assistant should:
-
-- Correct bad architecture immediately.
-- Explain WHY before changing code.
-- Recommend better patterns when appropriate.
-- Never encourage shortcuts that hurt scalability.
-- Teach like a senior engineer mentoring a junior developer.
-- Stop implementation if architecture is becoming poor.
-
-The user wants to become a better engineer, not just finish the website.
-
----
-
-# 21. Next Session Starts Here
-
-Review script.js.
-
-Understand every function.
-
-Locate fetch().
-
-Refactor loading flow.
-
-Implement initializeFeatures().
-
-Continue building feature modules one by one.
-
-No code should be written without first understanding its purpose.
-
----
-
-END OF MEMORY
+### How to use this file
+Paste this whole file as the first message in any new AI chat session about this project. It gives full context: what's built, what's fixed, what's next, and how to teach/respond.
