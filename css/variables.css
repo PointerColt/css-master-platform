@@ -1,0 +1,13 @@
+/* ============================== CSS VARIABLES ( :root ) =================================== */
+:root {
+    /* Charcoal & Amber theme - warm neutral base, one restrained accent color */
+    color-scheme: light;
+    --bg-base: #F5F1E8;       /* warm off-white page background, not stark white */
+    --bg-surface: #FFFFFF;    /* cards, sidebar, code blocks sit slightly lighter than the page */
+    --text-primary: #1C1917;  /* near-black charcoal for headings and primary text */
+    --text-secondary: #6B6560; /* warm gray for paragraph/muted text */
+    --accent-primary: #B45A08; /* darkened amber - used ONLY for links, active states, buttons */
+    --accent-hover: #8A4406;   /* darker amber for hover, keeps contrast on light bg */
+    --border-color: #E4DFD3;  /* soft warm border, barely visible - separates sections */
+    --font-main: 'Inter', sans-serif;
+}

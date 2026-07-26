@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>My CSS Master Platform</title>
+    <link rel="stylesheet" href="css/styles.css">  <!-- Link our stylesheet here -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+
+<!--=================================================BODY============================================================-->
+<body>
+    <div class="layout-wrapper">
+        
+
+        <!-- SIDEBAR -->
+        <nav class="sidebar">
+            <h2 class="sidebar-title">CSS TUTORIAL</h2>
+            
+            <details class="chapter-group" open>
+                <summary class="chapter-title">Chapter 1: The Foundation Of Styling</summary>
+                <ul class="topic-list">
+                    <!-- Notice we now point to the file path using data-file -->
+                    <li class="topic-item active" data-file="topics/topic-1-1.html">Topic 1.1: Core Architecture</li>
+                    <li class="topic-item" data-file="topics/topic-1-2.html">Topic 1.2: Workspace Setup</li>
+                </ul>
+            </details>
+        </nav>
+
+        
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- This is the empty container. JS will inject the separate HTML files right here! -->
+                <div id="dynamic-content-area">
+                    <!-- Content loads here -->
+                </div>
+            </div>
+        </main>
+        
+        
+    </div>
+
+<script src="js/exercise.js"></script>
+<script src="js/workspace.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

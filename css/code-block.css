@@ -1,0 +1,47 @@
+/* =================================== 7. PREMIUM CODE BLOCKS =====================================*/
+.code-container {
+    background-color: #0d1117; /* Darker Github-style background */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin: 25px 0;
+    overflow: hidden; /* Keeps the rounded corners clean */
+}
+
+.code-header {
+    background-color: #161b22;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.code-lang {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-copy {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.btn-copy:hover {
+    color: var(--text-primary);
+}
+
+pre {
+    padding: 20px;
+    overflow-x: auto; /* Allows scrolling if code is too long */
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace; /* Classic coding font */
+    color: #c9d1d9; /* Off-white for code text */
+    font-size: 0.95rem;
+}

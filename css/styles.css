@@ -1,0 +1,10 @@
+/* styles.css - This file imports all other CSS files in the correct order */
+@import url('variables.css');
+@import url('base.css');
+@import url('sidebar.css');
+@import url('main-content.css');
+@import url('code-block.css');
+@import url('exercise.css');
+@import url('workspace.css');
+@import url('responsive.css');
+

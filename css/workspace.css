@@ -1,0 +1,85 @@
+/* =========================================
+   INTERACTIVE CODE ENGINE UI for try your-own CSS experiments
+   ========================================= */
+.interactive-workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    background-color:var(--bg-surface) ;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.panel-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+/* The box where the button sits */
+.preview-box {
+    background-color: var(--bg-base); /* White background to see the button clearly */
+    padding: 30px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+
+.signup-button{
+   padding: 10px;
+   font-weight: bold;
+   font-size:1rem;
+   border:none; 
+}
+/* The text area where the user types */
+#user-css-input {
+    width: 100%;
+    background-color: var(--bg-base);
+    color: var(--text-primary); 
+    font-family: 'Courier New', Courier, monospace;
+    padding: 15px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#user-css-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+/* The Run Button */
+.action-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.action-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Feedback Messages */
+.feedback-box {
+    padding: 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.hidden { display: none; }
+.success-msg { background-color: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
+.error-msg { background-color: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444;  }

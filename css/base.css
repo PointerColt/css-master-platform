@@ -1,0 +1,73 @@
+/* ==============================  CSS BASE RESET =================================== */
+/* Removes default browser spacing */
+* {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+
+/* ============================== GLOBAL BASE STYLES (body, h1-h6, p, a, img, etc.) =================================== */
+body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* smooth transiction if we ever switch to light mode */
+    display: flex; /* Puts the sidebar and main content side-by-side */
+    height: 100vh; /* Forces the body to be exactly 100% of the screen height */
+    overflow: hidden; /* Kills the main browser scrollbar entirely */
+}   
+
+
+.app-container {
+    padding: 40px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+h1 {
+    color: var(--accent-primary);
+    font-weight: 700;
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+
+
+
+/* ========================= MAIN PAGE LAYOUT (CSS GRID) ================================= */
+.layout-wrapper {
+    display: grid; /* This creates a 280px sidebar, and the rest (1fr) goes to content */
+    grid-template-columns: 280px 1fr;
+    height: 100vh; /* Takes up full screen height */
+    width: 100%;
+}
+
+
+
+
+/* ---------------------------------- Responsive Images ---------------------------------- */
+.image-container {
+    margin: 100px 0;
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 80%; /* Strictly prevents the image from breaking out of the screen */
+    height: auto; /* Keeps the aspect ratio from stretching or squishing */
+    border-radius: 6px; /* Matches the rounded corners of your new sidebar buttons */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for your dark theme */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a slight 3D pop off the page */
+}
+
+.image-caption {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 10px;
+    font-style: italic;
+}
+
+

@@ -1,0 +1,98 @@
+/* =================================== 5.FLEXBOX =======================================*/
+
+    /* ==================================== SIDE BAR ==================================== */
+    .sidebar {
+        background-color: var(--bg-surface);
+        border-right: 1px solid var(--border-color);
+        padding: 40px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 280px; /* Keep whatever width you currently use */
+        height: 100vh; /* Stretches from the very top to the very bottom */
+        overflow-y: auto; /* Magically adds a scrollbar ONLY to this box if needed */
+        flex-shrink: 0; /* Prevents the sidebar from squishing if the screen gets small */
+    }
+
+    .sidebar-title {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+        color: var(--text-primary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+
+
+    /* ==================================== CHAPTERS & TOPICS ==================================== */
+    .chapter-group {
+        margin-bottom: 10px;
+    }
+
+    /* 1. The Chapter Button */
+    .chapter-title {
+        font-weight: 700;
+        color: var(--text-primary);
+        cursor: pointer;
+        padding: 10px 12px; /* Adds space inside to create the "button" shape */
+        border-radius: 6px; /* Rounds the corners of the square */
+        list-style: none; /* Hides the default browser arrow */
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        
+        /* Flexbox fixes the wrapping issue so text aligns perfectly */
+        display: flex; 
+        align-items: flex-start;
+        gap: 8px;
+        line-height: 1.4;
+    }
+
+    /* The Hover Square for the Chapter */
+    .chapter-title:hover {
+        background-color: rgba(255, 255, 255, 0.05); /* Subtle highlight square */
+        color: var(--accent-primary);
+    }
+
+    /* Custom animated arrow */
+    .chapter-title::before {
+        content: "▶";
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        transition: transform 0.2s ease;
+        margin-top: 3px; /* Aligns the arrow with the first line of text */
+    }
+
+    /* Points down when the folder is open */
+    details[open] .chapter-title::before {
+        transform: rotate(90deg); 
+    }
+
+    /* 2. The Nested Topic List */
+    .topic-list {
+        list-style-type: none; /* Removes the ugly default white dots */
+        margin: 5px 0 5px 22px; /* Shifts the entire list to the right */
+        padding-left: 12px;
+        border-left: 2px solid rgba(255, 255, 255, 0.1); /* Subtle tree line */
+        display: flex;
+        flex-direction: column;
+        gap: 4px; /* Space between the buttons */
+    }
+
+    /* 3. The Topic Button */
+    .topic-item {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        padding: 8px 12px; /* Creates the rectangular "button" hitbox */
+        border-radius: 6px; /* Rounds the corners */
+        display: block; /* Ensures the button takes up the full width */
+        line-height: 1.4;
+    }
+
+    /* The Hover Square for the Topics */
+    .topic-item:hover, .topic-item.active {
+        background-color: rgba(255, 255, 255, 0.321); /* The square highlight */
+        color: var(--accent-primary);
+        font-weight: 600;
+    }

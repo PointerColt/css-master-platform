@@ -1,0 +1,24 @@
+/* ==================================== MOBILE RESPONSIVENESS ================================== */
+@media (max-width: 768px) {
+    /* Stack the grid into a single column */
+    .layout-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    /* Adjust padding for smaller screens */
+    .main-content {
+        padding: 30px 20px;
+    }
+
+    /* Stack the practice split-screen */
+    .practice-split {
+        grid-template-columns: 1fr;
+    }
+
+    /* Make the sticky button stack neatly */
+    .exercise-callout {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
