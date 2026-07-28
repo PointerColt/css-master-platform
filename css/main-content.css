@@ -37,8 +37,12 @@
 }
 
 .reading-zone p {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-size: 1rem;
+}
+
+.reading-zone h3 {
+    color: var(--accent-primary);
 }
 
 .example-box-placeholder {

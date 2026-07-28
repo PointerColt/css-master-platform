@@ -1,0 +1,148 @@
+<header class="content-header">
+    <p class="chapter-label">Chapter 1: The Foundation Of Styling</p>
+    <hr>
+    <h1 class="topic-heading">Topic 1.2: Workspace Setup & Inspecting</h1>
+</header>
+
+
+<div class="reading-zone">
+    <p>Now that we know how HTML, CSS, and JavaScript work together, it is time to set up our personal digital art studio so we can start creating.</p>
+    
+    <p>To build websites, we use a code editor. We will use Visual Studio Code (VS Code), which is free and industry-standard. Think of VS Code as your high-tech easel, a clean folder on your computer (let's name it classroom) as your studio workspace, and your HTML and CSS files as your canvas and paint.</p>
+
+    <p>Even though we are learning CSS, we must create an index.html file first. Why? Because CSS is paint, and you cannot paint a wall if the physical wall doesn't exist yet! Once we have our HTML structure ready, we create our style.css file and link them together using a &lt;link&gt; tag in the HTML head</p>
+    <p>But what happens when you write CSS and things do not look the way you planned? Don't worry we see it later first let see the workspace setup.</p>
+
+
+    <!--Steps to setup workspace-->
+    <p>To make Visual Studio Code (VS Code) completely usable and ready for your HTML and CSS development, here is exactly what you need to do:</p>
+
+    <h3>1. Download and Install VS Code</h3>
+    <p>First, you download the free code editor from the official Microsoft site <a href="https://code.visualstudio.com/Download" target="_blank" rel="noopener noreferrer">VS Code</a>. During the installation process on Windows, a vital trick is to check the boxes that say "Add to path" and "Create a desktop icon".</p>
+    
+    <h3>2. Create Your Workspace Folder</h3>
+    <p>Before typing any code, create a dedicated folder on your computer (we named ours classroom). In VS Code, go to the top menu and select File > Open Folder, then select and open your newly created classroom folder. This structures your VS Code sidebar so you can easily manage your files.</p>
+    
+    <h3>3. Create the HTML Canvas First</h3>
+    <p>Since you cannot paint a wall if the physical wall does not exist, you must create your HTML structure before writing CSS.<br><br>
+
+    * Click the New File icon in the VS Code sidebar and create a file named exactly index.html.
+    <br><br>
+    *Instead of writing the boilerplate code by hand, type an exclamation mark (!) and hit Enter. This triggers VS Code's built-in Emmet shortcut, which instantly auto-generates your basic HTML page layout.</p>
+
+    <h3>4. Create the CSS File</h3>
+    <p>Next, click the New File icon again to create your stylesheet, naming it style.css. (Alternatively, some developers like to organize it inside a dedicated folder named css, creating css/style.css).</p>
+
+    <h3>5. Link the Two Files Together</h3>
+    <p>Right now, your HTML page has no idea that your stylesheet exists. To bridge them together, you must add a &lt;link&gt; tag inside the &lt;head&gt; container of your index.html file.</p>
+    <p>Write this exact line: &lt;link rel="stylesheet" href="style.css"&gt;</p>
+    <p>(If you placed your stylesheet inside a CSS folder, update the path to href="css/style.css").</p>
+
+
+    <hr><br><hr>
+    <p></p>
+    <h1>Inspecting</h1>
+    <p>Every browser ships with a built-in tool for inspecting a live webpage: Developer Tools (DevTools). Instead of guessing why a layout looks wrong, DevTools shows you exactly what the browser rendered — the real HTML structure and the real CSS rules currently applied, live.</p>
+    <br>
+    <p>Open it with <strong>F12</strong>, or <strong>Ctrl+Shift+I</strong> on Windows/Linux (<strong>Cmd+Option+I</strong> on Mac). You can also right-click any element on the page and choose <strong>Inspect</strong> — this jumps straight to that element in DevTools instead of opening it blank.</p>
+    <br>
+    <p>The <strong>Elements panel</strong> has two halves. On the left, the live DOM tree — the actual structure the browser built, which can differ from your raw HTML if JavaScript modified it. On the right, the <strong>Styles pane</strong>, listing every CSS rule affecting the selected element, in cascade order. If two rules conflict, whichever is applied last in that list is winning — this is the fastest way to debug "why isn't my CSS applying."</p>
+    <br>
+    <p>Below the Styles pane sits the <strong>box model diagram</strong> — a small nested rectangle showing the exact pixel values for content, padding, border, and margin on the selected element. This is the single most useful panel for spacing bugs: if something looks shifted or a scrollbar sits in the wrong place, this diagram tells you which of the four layers is responsible, instead of you guessing and editing CSS files blindly.</p>
+    <br>
+    <p>One more panel worth knowing: <strong>Computed</strong>. It shows the final, resolved value the browser is actually using after every rule and inheritance is applied — the same value you'd get from JavaScript's <code>getComputedStyle()</code>, which is the exact function this platform's own code-checker uses to grade your exercises.</p>
+    <br>
+    <p>You can also click any value in the Styles pane and edit it directly in the browser. The page updates instantly — this is how you test a fix before writing it into your actual CSS file. Refreshing the page reverts everything, because DevTools edits are never saved to disk.</p>
+
+    <div class="demo-video">
+        <video src="assets/devtools-inspect-demo.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+
+    <br><hr><br><hr><br>
+
+
+    <h1>Example</h1>
+    <p>Take this CSS rule:</p>
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>.card {
+    padding: 20px;          /* space inside the border */
+    border: 2px solid #E4DFD3;
+    margin: 16px;           /* space outside the border */
+}</code></pre>
+    </div>
+    <p>Select an element styled this way in DevTools, and the box model diagram will show four labeled rings: content in the center, then a 20px padding ring, the 2px border, and a 16px margin ring — each with its real measured pixels, not just what's written in the file.</p>
+
+
+    <br><hr><br><hr><br>
+
+
+    <section id="exercise-page">
+        <div class="exercise-container">
+            <div class="exercise-header">
+                <h1>Exercise</h1>
+                <p>Answer the following question</p>
+            </div>
+
+            <div class="question-card" data-question="1">
+                <h2 class="question-number">Question 1</h2>
+                <p class="question-text">Which keyboard shortcut opens DevTools in most browsers on Windows?</p>
+                <div class="options-container">
+                    <button class="option-btn" data-correct="true">F12</button>
+                    <button class="option-btn">Ctrl+P</button>
+                    <button class="option-btn">Alt+Tab</button>
+                    <button class="option-btn">Ctrl+S</button>
+                </div>
+                <p class="feedback-message"></p>
+            </div>
+
+            <div class="question-card" data-question="2">
+                <h2 class="question-number">Question 2</h2>
+                <p class="question-text">Which panel shows the live DOM tree and the CSS rules applied to a selected element?</p>
+                <div class="options-container">
+                    <button class="option-btn" data-correct="true">Elements panel</button>
+                    <button class="option-btn">Console panel</button>
+                    <button class="option-btn">Network panel</button>
+                </div>
+                <p class="feedback-message"></p>
+            </div>
+
+            <div class="question-card" data-question="3">
+                <h2 class="question-number">Question 3</h2>
+                <p class="question-text">What does the box model diagram in DevTools show?</p>
+                <div class="options-container">
+                    <button class="option-btn" data-correct="true">Real pixel values for content, padding, border, and margin</button>
+                    <button class="option-btn">Only the element's text color</button>
+                    <button class="option-btn">JavaScript variable values</button>
+                </div>
+                <p class="feedback-message"></p>
+            </div>
+
+            <div class="question-card" data-question="4">
+                <h2 class="question-number">Question 4</h2>
+                <p class="question-text">You edit a CSS value directly in the DevTools Styles pane, then refresh the page. What happens?</p>
+                <div class="options-container">
+                    <button class="option-btn" data-correct="true">The change is lost — DevTools edits are never saved to your file</button>
+                    <button class="option-btn">It's automatically saved to your CSS file</button>
+                    <button class="option-btn">The entire website resets to a blank page</button>
+                </div>
+                <p class="feedback-message"></p>
+            </div>
+
+            <div class="exercise-navigation">
+                <button class="nav-btn" id="prev-btn">Previous</button>
+                <button class="nav-btn" id="next-btn">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <hr><br><hr>
+
+    <div class="topic-nav">
+        <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
+        <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
+    </div>
+
+
+</div>
