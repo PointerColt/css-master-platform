@@ -8,32 +8,39 @@
 <div class="reading-zone">
     <p>Now that we know how HTML, CSS, and JavaScript work together, it is time to set up our personal digital art studio so we can start creating.</p>
     
-    <p>To build websites, we use a code editor. We will use Visual Studio Code (VS Code), which is free and industry-standard. Think of VS Code as your high-tech easel, a clean folder on your computer (let's name it classroom) as your studio workspace, and your HTML and CSS files as your canvas and paint.</p>
+    <p>To build websites, we use a code editor. We will use Visual Studio Code <strong>(VS Code)</strong>, which is free and industry-standard. Think of VS Code as your high-tech easel, a clean folder on your computer (let's name it classroom) as your studio workspace, and your HTML and CSS files as your canvas and paint.</p>
 
     <p>Even though we are learning CSS, we must create an index.html file first. Why? Because CSS is paint, and you cannot paint a wall if the physical wall doesn't exist yet! Once we have our HTML structure ready, we create our style.css file and link them together using a &lt;link&gt; tag in the HTML head</p>
     <p>But what happens when you write CSS and things do not look the way you planned? Don't worry we see it later first let see the workspace setup.</p>
 
 
     <!--Steps to setup workspace-->
+    <h1>Setting Up The Workspace</h1>
     <p>To make Visual Studio Code (VS Code) completely usable and ready for your HTML and CSS development, here is exactly what you need to do:</p>
 
-    <h3>1. Download and Install VS Code</h3>
+
+    <h4>1. Download and Install VS Code</h4>
     <p>First, you download the free code editor from the official Microsoft site <a href="https://code.visualstudio.com/Download" target="_blank" rel="noopener noreferrer">VS Code</a>. During the installation process on Windows, a vital trick is to check the boxes that say "Add to path" and "Create a desktop icon".</p>
     
-    <h3>2. Create Your Workspace Folder</h3>
-    <p>Before typing any code, create a dedicated folder on your computer (we named ours classroom). In VS Code, go to the top menu and select File > Open Folder, then select and open your newly created classroom folder. This structures your VS Code sidebar so you can easily manage your files.</p>
+
+    <h4>2. Create Your Workspace Folder</h4>
+    <p>Before typing any code, create a dedicated folder on your computer (we named ours classroom). In VS Code, go to the top menu and select <strong>File</strong> > <strong>Open Folder</strong>, then select and open your newly created classroom folder. This structures your VS Code sidebar so you can easily manage your files.</p>
     
-    <h3>3. Create the HTML Canvas First</h3>
-    <p>Since you cannot paint a wall if the physical wall does not exist, you must create your HTML structure before writing CSS.<br><br>
 
-    * Click the New File icon in the VS Code sidebar and create a file named exactly index.html.
-    <br><br>
-    *Instead of writing the boilerplate code by hand, type an exclamation mark (!) and hit Enter. This triggers VS Code's built-in Emmet shortcut, which instantly auto-generates your basic HTML page layout.</p>
+    <h4>3. Create the HTML Canvas First</h4>
+    <p class="no-margin">Since you cannot paint a wall if the physical wall does not exist, you must create your HTML structure before writing CSS.</p>
+    <ul>
+        <li>Click the New File icon in the VS Code sidebar and create a file named exactly index.html.</li>
+        <li>Instead of writing the boilerplate code by hand, type an exclamation mark (!) and hit Enter. This triggers VS Code's built-in Emmet shortcut, which instantly auto-generates your basic HTML page layout.</li>
+    </ul>
+    <p></p>
 
-    <h3>4. Create the CSS File</h3>
+
+    <h4>4. Create the CSS File</h4>
     <p>Next, click the New File icon again to create your stylesheet, naming it style.css. (Alternatively, some developers like to organize it inside a dedicated folder named css, creating css/style.css).</p>
 
-    <h3>5. Link the Two Files Together</h3>
+
+    <h4>5. Link the Two Files Together</h4>
     <p>Right now, your HTML page has no idea that your stylesheet exists. To bridge them together, you must add a &lt;link&gt; tag inside the &lt;head&gt; container of your index.html file.</p>
     <p>Write this exact line: &lt;link rel="stylesheet" href="style.css"&gt;</p>
     <p>(If you placed your stylesheet inside a CSS folder, update the path to href="css/style.css").</p>
@@ -50,13 +57,9 @@
     <br>
     <p>Below the Styles pane sits the <strong>box model diagram</strong> — a small nested rectangle showing the exact pixel values for content, padding, border, and margin on the selected element. This is the single most useful panel for spacing bugs: if something looks shifted or a scrollbar sits in the wrong place, this diagram tells you which of the four layers is responsible, instead of you guessing and editing CSS files blindly.</p>
     <br>
-    <p>One more panel worth knowing: <strong>Computed</strong>. It shows the final, resolved value the browser is actually using after every rule and inheritance is applied — the same value you'd get from JavaScript's <code>getComputedStyle()</code>, which is the exact function this platform's own code-checker uses to grade your exercises.</p>
+    <p>One more panel worth knowing: <strong>Computed</strong>. It shows the final, resolved value the browser is actually using after every rule and inheritance is applied — the same value you'd get from JavaScript's <strong>getComputedStyle()</strong>, which is the exact function this platform's own code-checker uses to grade your exercises.</p>
     <br>
     <p>You can also click any value in the Styles pane and edit it directly in the browser. The page updates instantly — this is how you test a fix before writing it into your actual CSS file. Refreshing the page reverts everything, because DevTools edits are never saved to disk.</p>
-
-    <div class="demo-video">
-        <video src="assets/devtools-inspect-demo.mp4" autoplay muted loop playsinline></video>
-    </div>
 
 
     <br><hr><br><hr><br>
@@ -137,7 +140,6 @@
         </div>
     </section>
 
-    <hr><br><hr>
 
     <div class="topic-nav">
         <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>

@@ -1,0 +1,39 @@
+.callout-mistake {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px 20px;
+    margin: 40px 0;
+}
+
+.mistake-header {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+
+.mistake-count {
+    background-color: var(--bg-base);
+    margin: 30px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backface-visibility: hidden;
+    
+}
+
+.mistake-count:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mistake-count h2 {
+    text-align: center;
+    margin: 10px;
+}
+
+  

@@ -3,8 +3,7 @@
     background-color: #0d1117; /* Darker Github-style background */
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    margin: 25px 0;
-    margin-bottom: 80px;
+    margin: 20px 20px;
     overflow: hidden; /* Keeps the rounded corners clean */
 }
 
@@ -46,3 +45,10 @@ code {
     color: #c9d1d9; /* Off-white for code text */
     font-size: 0.95rem;
 }
+
+.code-outside-block {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--text-secondary);
+    font-size:0.95rem;
+    font-weight: 600;
+}    
