@@ -16,7 +16,7 @@ async function loadContent(filePath) {
         initializeTopicNavigation(filePath)
         
         // Scroll back to the top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.querySelector('.main-content').scrollTo({ top: 0 })
         
     } catch (error) {
         contentArea.innerHTML = '<h2>Error loading content. Check file path.</h2>';
