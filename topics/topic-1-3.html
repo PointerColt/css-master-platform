@@ -5,214 +5,122 @@
 </header>
 
 <div class="reading-zone">
-    <p>Welcome to your first deep dive into writing actual CSS rules! In our previous lessons, we set up our VS Code workspace and learned how to use our browser's DevTools. Now, we are ready to learn the exact language the browser uses to turn raw HTML elements into beautifully styled components.</p>
+    <p>Welcome to your first deep dive into writing actual CSS rules! In our previous lessons, we learned how HTML, CSS, and JavaScript divide their duties, and we configured our VS Code workspaces. Now, we are going to learn the exact language mechanics the browser uses to read and apply your style designs.</p>
     
-    <p>Before we write code, let's understand the concept of a CSS Rule. A CSS stylesheet is nothing more than a list of instructions. When the browser reads your HTML file, it builds a parent-child tree structure of your elements. Your CSS rules act as targeting instructions, telling the browser: <strong>"Find these specific elements in the tree, and apply these exact visual changes to them".</strong></p>
-    
-    <h1>Core CSS Syntax</h1>
-
-    <p class="no-margin">A single CSS rule is divided into two primary parts:</p>
+    <p>Before writing code, let’s understand what a CSS Rule actually is.</p>
+    <p>Think of your HTML document as a physical room. Your elements (like paragraphs, headings, and buttons) are the objects in that room. A CSS rule is a set of instructions you send to your decorator.</p>
+    <p>Every complete instruction must answer two questions:</p>
     <ul>
-        <li><strong>The Selector: </strong> The targeting query on the left that identifies which HTML elements to style.</li>
-        <li><strong>The Declaration Block: </strong> The set of instructions on the right enclosed in curly braces {}.</li>
+        <li><strong>Which object</strong> in the room are you targeting? (This is the <strong>Selector</strong>).</li>
+        <li><strong>What changes</strong> are you making to that object? (This is the <strong>Declaration Block</strong>).</li>
     </ul>
-    <p></p>
-    
-    <p>Inside the curly braces, you write individual declarations. Each declaration is a simple property-value pair separated by a <strong>colon ':'</strong> and terminated with a <strong>semicolon ';'</strong>.<br></p>
-    
-    <ul>
-        <li><strong>The Property</strong> is the specific style you want to change (like color or text-align).</li>
-        <li><strong>The Value</strong> is the setting you are applying (like red or center).</li>
-    </ul>
-    <p></p>
 
-    <h2>Example code</h2>
+
+    <h1>Structure Of CSS Rule</h1>
+    <p>A CSS rule is structured as follows:</p>
     <div class="code-container">
         <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>
-h1 {
-    color: red;
-    text-align: center;
-}
-        </code></pre>
-    </div>
-
-    <div class="tips"><strong>Tip on White Space: </strong>Browsers completely ignore extra spaces or line breaks inside your stylesheet. Writing an entire rule on a single line is technically valid, but it is considered incredibly lazy and creates a messy, unreadable file as your code grows. Always place each declaration on its own indented line to keep your code organized and clean.
-    </div>
-
-    <hr><br><hr>
-    <p></p>
-
-    <h1>The Fundamental CSS Selectors</h1>
-    <p>To style elements with surgical precision, we must master the primary targeting tools. Let's look at them from the broadest to the most specific:</p>
-    
-    <h4>1. The Universal Selector (*)</h4>
-    <p>Represented by the asterisk symbol <strong>*</strong> . This matches every single element in your document tree.</p>
-    <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* Every element on the page will turn pink */
-* {
-    color: pink;
+        <pre><code>selector {
+    property: value;
 }</code></pre>
     </div>
+    
+    <p>Let's break down each component:</p>
+    <ul>
+        <li><p><strong>The Selector</strong>: The targeting query on the left. It identifies the HTML element to style. Note that you target the tag by name and never write HTML brackets &lt; &gt; in CSS (e.g., write h1, not &lt;h1&gt;).</p></li>
+        <li><p><strong>Curly Braces {}</strong>: These wrap your declaration block. Everything inside these braces is applied to the targeted selector.</p></li>
+        <li><p><strong>The Property</strong>: The visual feature you want to change (such as color for text color).</p></li>
+        <li><p><strong>The Value</strong>: The exact setting you are applying to that property (such as red).</p></li>
+        <li><p><strong>The Colon (:)</strong>: Placed between the property and the value to separate them.</p></li>
+        <li><p><strong>The Semicolon (;)</strong>: Placed at the very end of the declaration. It acts as a statement terminator.</p></li>
+    </ul>
 
 
+    <hr><hr>
 
-    <h4>2. The Element Selector</h4>
-    <p>Targets HTML tags directly by their name.<br> Remember: never write HTML triangle brackets &lt; &gt; around your CSS selectors! Target the tag name directly.</p>
+
+    <h1>Types Of Declaration</h1>
+    <p></p>
+    <h2>Single Declaration Rule</h2>
+    <p class="no-margin">When changing only one style on an element, your rule is simple:</p>
     <div class="code-container">
-        <div class="code-hearder"><span class="code-lang">CSS</span></div>
-        <pre><code>/* Styles every paragraph element on the page */
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>/* Targets all H1 headings and makes them maroon */
+h1 {
+    color: maroon;
+}</code></pre>
+    </div>
+    <p></p>
+    <h2>Grouped Declaration Block</h2>
+    <p>To make multiple changes to the same element, you group your declarations inside a single set of curly braces. Semicolons are absolutely critical here because they tell the browser where one instruction ends and the next begins.</p>
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>/* All three declarations are grouped inside one block */
 p {
     color: gray;
-}</code></pre>
+    font-size: 20px;
+    text-align: center;
+}
+</code></pre>
     </div>
 
 
-    <h4>3. The Class Selector (.)</h4>
-    <p>When you want to style multiple specific elements, assign them a shared class attribute in your HTML (e.g., class="accent"). In CSS, target this class by prefixing it with a dot/period <strong>'.'</strong>.</p>
-     <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* Styles any element carrying class="accent" */
-.accent {
-    color: orange;
-}</code></pre>
-    </div>
+    <hr><hr>
+    
 
-
-    <h4>4. The ID Selector (#)</h4>
-    <p>When targeting a singular, highly unique element, use an HTML id attribute. Target it in CSS by prefixing the ID name with a hashtag/pound symbol <strong>#</strong>.</p>
+    <h1>Whitespace and Indentation Rules</h1>
+    <p>The browser's rendering engine ignores extra spaces, tabs, and line breaks. This means you can technically write a rule on a single line, but doing so is considered poor practice because it is difficult to read:</p>
     <div class="code-container">
         <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* Styles the single element carrying id="featured-box" */
-#featured-box {
-    color: green;
-}</code></pre>
+        <pre><code>/* Hard to read and maintain */
+h1 { color: red; font-size: 30px; text-align: center; }
+
+/* Clean, readable, and professional (Recommended) */
+h1 {
+    color: red;
+    font-size: 30px;
+    text-align: center;
+}
+</code></pre>
     </div>
 
 
-    <h4>5. Grouping Selectors (,)</h4>
-    <p>If several selectors need the identical styles applied, you can group them together by separating their names with a comma <strong>','</strong>.</p>
+    <hr><hr>
+
+    
+    <h1>Missing Semicolon</h1>
+    <p>If you forget a semicolon, the browser ignores your line breaks and merges adjacent declarations.</p>
     <div class="code-container">
         <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* Shorthand to style all three headings at once */
-h1, h2, h3 {
-    color: purple;
-}</code></pre>
+        <pre><code>/* BROKEN CODE: Missing semicolon after "red" */
+h1 {
+    color: red
+    font-size: 30px;
+}
+</code></pre>
     </div>
+    <p>Because the semicolon after red is missing, the browser reads this as a single broken instruction: color: <strong>red font-size 30px;</strong></p>
+    <p>Since <strong>red font-size 30px</strong> is not a valid value for the color property, the browser discards the entire rule and your styles disappear. Always terminate your statements with a semicolon!</p>
 
-    <h4>6. Descendant Selectors (Space)</h4>
-    <p>If you only want to style an element when it sits inside another parent container, use a space combinator. Read this selector from right to left: "Find any strong element that is a descendant of an element carrying the class .featured-box".
-        <br><pr>Do not nest it too long (2-3 level is enough).</pr>
-    </p>
+
+    <hr><hr>
+
+
+    <h1>Unknown Properties and Values</h1>
+    <p>If you make a typo in a property name or supply an unpermitted value, the browser simply discards that one invalid declaration while continuing to parse the rest of your stylesheet normally.</p>
     <div class="code-container">
         <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* Targets ONLY strong tags inside .featured-box */
-.featured-box strong {
-    color: yellow;
+        <pre><code>p {
+    brain-size: 2cm;       /* INVALID: Discarded by the browser */
+    color: ultraviolet;    /* INVALID: Discarded by the browser */
+    text-align: center;    /* VALID: Applied normally */
 }</code></pre>
     </div>
-
-    <p></p>
-    <hr><br><hr>
-    <p></p>
-
-    <h1>Specificity</h1>
-    <p>What happens when multiple CSS rules target the same HTML element and try to apply conflicting colors? The browser does not guess; it relies on a strict set of rules called the Cascade and Specificity to determine the winner.</p>
-   
-    <h4>Step 1: Specificity Weight (The Column Rule)</h4>
-    <p>The browser evaluates selectors based on their structural complexity. Specificity is measured in four distinct columns: [Inline, ID, Class, Element].</p>
-
-    <table class="spec-table">
-        <thread>
-            <tr>
-                <th>Selector Type</th>
-                <th>Specificity Score</th>
-                <th>Concept</th>
-            </tr>
-        </thread>
-        <tbody>
-            <tr>
-                <td>Inline Style</td>
-                <td>1, 0, 0, 0</td>
-                <td>Applied directly inside the HTML tag attribute</td>
-            </tr>
-
-            <tr>
-                <td>ID Selector</td>
-                <td>0, 1, 0, 0</td>
-                <td>Targets a unique #id</td>
-            </tr>
-
-            <tr>
-                <td>Class Selector</td>
-                <td>0, 0, 1, 0</td>
-                <td>Targets a .class (also targets pseudo-classes and attributes).</td>
-            </tr>
-
-            <tr>
-                <td>Element Selector</td>
-                <td>0, 0, 0, 1</td>
-                <td>Targets raw tags like h1 or p.</td>
-            </tr>
-
-            <tr>
-                <td>Universal Selector</td>
-                <td>0, 0, 0, 0</td>
-                <td>Matches everything but holds zero specificity.</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <p class="no-margin">When resolving conflicts, the browser compares scores from left to right.<br>Let's look at this comparison:</p>
-    <ul>
-        <li>Selector A: .accent (Specificity = 0, 0, 1, 0)</li>
-        <li>Selector B: body main div section p (Specificity = 0, 0, 0, 5)</li>
-    </ul>
-
-    <p></p>
-    <p>Even though Selector B has five element selectors, Selector A wins because a 1 in the Class column beats a 0 in the Class column. The columns never carry over! You can chain 100 element selectors together, and they will still lose to a single class selector because elements cannot cross over into the class column.</p>
+    <p>In your browser's DevTools (Inspect Element), invalid properties will be crossed out and flagged with a warning icon to help you debug them. Don't worry, we'll learn it later</p>
 
 
+    <hr><hr>
 
-    <h4>Step 2: The Cascade (The Late-Wins Rule)</h4>
-    <p class="no-margin">Specificity handles most conflicts — but what if two rules have the exact same score?</p>
-    <ul>
-        <li>Rule A: h1 { color: red; } (Specificity = 0, 0, 0, 1).</li>
-        <li>Rule B: h1 { color: blue; } (Specificity = 0, 0, 0, 1).</li>
-    </ul>
-    <p></p>
-    <p>Since both selectors have the exact same specificity weight, <strong>the Cascade rule</strong> takes over:<br> the rule written later (further down) in the stylesheet wins. Therefore, the h1 element will render in blue.</p>
-
-
-    <hr><br><hr>
-
-
-    <aside class="callout-mistake">
-
-        <div class="mistake-header">Common Mistake</div>
-
-        <div class="mistake-count">
-            <h2>Mistake 1</h2>
-            <h4>Forgetting the Semicolon</h4>
-            <p>Skipping a semicolon doesn't just break that one line — the browser merges it with the next declaration, corrupting both. One missing ; can silently kill two rules at once.</p>
-        </div>
-        
-
-        <div class="mistake-count">
-            <h2>Mistake 2</h2>
-            <h4>Typing ".class" or "#id" Literally</h4>
-            <p>Beginners sometimes write .class or #id in their CSS file instead of swapping in their actual class or id name, like .heading or #box. The browser won't error — it just silently matches nothing.</p>
-        </div>
-
-       <div class="mistake-count">
-            <h2>Mistake 3</h2>
-            <h4>Assuming Later Always Wins</h4>
-            <p>Order only decides the winner when two rules have the exact same specificity score. A single class selector written at the very top of your file will still beat an element selector written at the very bottom.</p>
-       </div>
-    </aside>
-
-    <hr><br><hr>
     
     <section id="exercise-page">
         <div class="exercise-container">
@@ -223,71 +131,60 @@ h1, h2, h3 {
 
             <div class="question-card" data-question="1">
                 <h2 class="question-number">Question 1</h2>
-                <p class="question-text">A student is building a landing page and has written the following HTML and CSS:<br>
-                    <div class=code-container>
-                        <div class="code-header"><span class="code-lang">HTML</span></div>
-                        <pre><code>&lt;p id="lead-text" class="highlight"&gt;Hello World!&lt;/p&gt;
-                        </code></pre>
-                    </div>
-                    <div class=code-container>
-                        <div class="code-header"><span class="code-lang">CSS</span></div>
-                        <pre><code>p {
-    color: red;
-}
-
-#lead-text {
-    color: blue;
-}
-
-.highlight {
-    color: green;
-}
-                        </code></pre>
-                    </div>
-                    What color will the paragraph text "Hello World!" display in?
-                </p>
-
+                <p class="question-text">Which of the following is a syntactically correct CSS rule targeting paragraph elements?</p>
                 <div class="options-container">
-                    <button class="option-btn">Red</button>
-                    <button class="option-btn">Green</button>
-                    <button class="option-btn" data-correct="true">Blue</button>
-                    <button class="option-btn">It won't render</button>
+                    <button class="option-btn">&lt;p&gt; { color: red; }</button>
+                    <button class="option-btn">p { color = red; }</button>
+                    <button class="option-btn"  data-correct="true">p { color: red; }</button>
+                    <button class="option-btn">p ( color: red; )</button>
                 </div>
                 <p class="feedback-message"></p>
             </div>
 
             <div class="question-card" data-question="2">
                 <h2 class="question-number">Question 2</h2>
-                <p class="question-text">A page has <strong>.accent { color: orange; }</strong> and <strong>body main div section p { color: purple; }</strong>. The paragraph has both an element chain AND the .accent class which one is going to win?
+                <p class="question-text">If a developer writes h2 { color: blue font-size: 20px; } with no semicolon after blue, how will the browser interpret the rule?</p>
                 <div class="options-container">
-                    <button class="option-btn">Purple, because the selector chain is longer</button>
-                    <button class="option-btn" data-correct="true">Orange, because a single class always beats any number of element selectors</button>
-                    <button class="option-btn">It depends on which rule is written last</button>
-                    <button class="option-btn">Neither — they cancel out</button>
+                    <button class="option-btn">It will apply the blue color but ignore the font size.</button>
+                    <button class="option-btn">It will apply the font size but ignore the blue color.</button>
+                    <button class="option-btn"  data-correct="true">It will merge the properties into a single invalid declaration and ignore both styles.</button>
+                    <button class="option-btn">It will automatically insert the missing semicolon and render both styles.</button>
                 </div>
                 <p class="feedback-message"></p>
             </div>
 
             <div class="question-card" data-question="3">
                 <h2 class="question-number">Question 3</h2>
-                <p class="question-text">Two rules both target <strong>h1</strong> with identical specificity: one sets <strong>color: red</strong>, written earlier in the file, the other sets <strong>color: blue</strong>, written later. Which color shows?</p>
+                <p class="question-text">What is the primary role of the colon : in a CSS declaration?</p>
                 <div class="options-container">
-                    <button class="option-btn">Red, because it was written first</button>
-                    <button class="option-btn" data-correct="true">Blue, because when specificity ties, the later rule wins</button>
-                    <button class="option-btn">Both colors blend together</button>
-                    <button class="option-btn">Neither — the browser throws an error</button>
+                    <button class="option-btn">It marks the end of a style rule set.</button>
+                    <button class="option-btn" data-correct="true">It separates the property name from its declared value.</button>
+                    <button class="option-btn">It groups multiple selectors together.</button>
+                    <button class="option-btn">It indicates that the declaration is invalid.</button>
                 </div>
                 <p class="feedback-message"></p>
             </div>
 
             <div class="question-card" data-question="4">
                 <h2 class="question-number">Question 4</h2>
-                <p class="question-text">You forget a semicolon after color: red in a declaration block. What actually happens?</p>
+                <p class="question-text">If a browser parses a CSS stylesheet and encounters an unknown property name like widget-width: 50px;, what action does it take?</p>
                 <div class="options-container">
-                    <button class="option-btn">Only that one line is ignored, the rest still works</button>
-                    <button class="option-btn">The whole stylesheet fails to load</button>
-                    <button class="option-btn">Nothing — semicolons are optional in CSS</button>
-                    <button class="option-btn" data-correct="true">The browser merges it with the next line, breaking both declarations</button>  
+                    <button class="option-btn">It stops reading the entire stylesheet and throws a fatal syntax error.</button>
+                    <button class="option-btn" data-correct="true">It ignores and discards only that invalid declaration while continuing to parse the other valid styles.</button>
+                    <button class="option-btn">It overrides the default browser layout and displays the raw code on the screen.</button>
+                    <button class="option-btn">It applies the style to the closest matching tag.</button>
+                </div>
+                <p class="feedback-message"></p>
+            </div>
+
+            <div class="question-card" data-question="5">
+                <h2 class="question-number">Question 5</h2>
+                <p class="question-text">Why is it highly recommended to place each CSS declaration on a separate, indented line inside the curly braces?</p>
+                <div class="options-container">
+                    <button class="option-btn">Browsers will refuse to run CSS code that is written on a single line.</button>
+                    <button class="option-btn">It increases the specificity weight of the selector.</button>
+                    <button class="option-btn" data-correct="true">It organizes your code, making rules easy for humans to read and maintain as stylesheets grow.</button>
+                    <button class="option-btn">It is a mandatory requirement for linking external spreadsheets.</button>
                 </div>
                 <p class="feedback-message"></p>
             </div>
