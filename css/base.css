@@ -65,4 +65,18 @@ p {
     font-style: italic;
 }
 
+.image-closetotext {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-closetotext img {
+    max-width: 60%; /* Strictly prevents the image from breaking out of the screen */
+    height: auto; /* Keeps the aspect ratio from stretching or squishing */
+    max-height: 300px;
+    border-radius: 6px; /* Matches the rounded corners of your new sidebar buttons */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for your dark theme */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a slight 3D pop off the page */
+}
+
 

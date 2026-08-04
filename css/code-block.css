@@ -46,7 +46,7 @@ code {
     font-size: 0.95rem;
 }
 
-.code-outside-block {
+.no-black-bg {
     font-family: 'Courier New', Courier, monospace;
     color: var(--text-secondary);
     font-size:0.95rem;
