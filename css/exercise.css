@@ -1,15 +1,13 @@
 #exercise-page {
     display:block;
     width: 100%;
-    min-height: 100vh;
-    padding:40px;
+    
 }
 
 .exercise-container {
-    max-width: 800px;
+    max-width: 100%;
     min-height: 550px;
-    margin: 40px  auto;
-    padding:35px;
+    margin-block: 70px;
     background: var(--bg-surface);
     border-radius: 12px;
     border: 1px solid var(--border-color);
@@ -21,7 +19,6 @@
 
 .exercise-header{
     text-align:center;
-    margin-bottom: 30px;
 }
 
 .exercise-header h1{
@@ -56,7 +53,6 @@
     font-size: 1.1rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 20px;
 }
 
 .options-container {
@@ -99,7 +95,8 @@
 .exercise-navigation {
     display:flex;
     justify-content: space-between;
-    margin-top: 40px;
+    padding-inline: 25px;
+    margin-block: 20px;
 }
 
 .nav-btn{

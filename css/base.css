@@ -15,16 +15,10 @@ body {
     font-family: var(--font-main);
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease; /* smooth transiction if we ever switch to light mode */
-    display: flex; /* Puts the sidebar and main content side-by-side */
     height: 100vh; /* Forces the body to be exactly 100% of the screen height */
     overflow: hidden; /* Kills the main browser scrollbar entirely */
 }   
 
-
-.app-container {
-    padding: 40px;
-    border-bottom: 1px solid var(--border-color);
-}
 
 p {
     color: var(--text-secondary);
@@ -46,7 +40,7 @@ p {
 
 /* ---------------------------------- Responsive Images ---------------------------------- */
 .image-container {
-    margin: 100px 0;
+    margin: 70px 0;
     text-align: center;
 }
 

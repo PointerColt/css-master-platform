@@ -6,12 +6,10 @@
     flex-grow: 1; /* Tells the main area to fill all remaining horizontal space */
     height: 100vh; /* Stretches from the very top to the very bottom */
     overflow-y: auto; /* Magically adds a scrollbar ONLY to this box if needed */
-    
-    /* ... keep your other existing styles (padding, fonts, etc.) ... */
 }
 
+
 .content-wrapper {
-    max-width: 1000px;
     padding: 50px 80px;
 }
 
@@ -33,15 +31,11 @@
     font-weight: 800;
 }
 
-.reading-zone h1 {
-    color: var(--text-primary);
-    font-weight: 700;
-
-}
 
 .reading-zone h2 {
     color: var(--text-primary);
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 

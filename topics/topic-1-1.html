@@ -4,6 +4,7 @@
     <h1 class="topic-heading">Topic 1.1: Core Architecture</h1>
 </header>
 
+
 <div class="reading-zone">
     <P>Welcome to your very first step on this exciting journey to mastering web design! I am so thrilled to be your mentor as you dive into the beautiful world of CSS.</P>
 
@@ -19,47 +20,45 @@
     
 
 
-    <div class="image-container">
-        <img src="assets/architecture.png" alt="A diagram of CSS architecture">
-    </div>
+    <!--============================================ Image ============================================-->
+        <div class="image-container">
+            <img src="assets/architecture.png" alt="A diagram of CSS architecture">
+        </div>
 
 
     <p>In this course, we are going to focus entirely on CSS—your ultimate creative toolkit for bringing visual style, color, and premium design to the web</p>
     
-    <hr><hr>
-    
-    <h1>Example Code</h1>
-    <p>Below is a simple, focused CSS stylesheet demonstrating how we select structural HTML elements and apply custom styles to them.</p>
-    <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* 1. We use an element selector to target the main heading (HTML) */
-h1 {
-    color: #4676a9;             /* Sets the text (foreground) color to a soft, professional blue */
-    text-align: center;         /* Horizontally aligns the heading text right in the middle */
-    font-family: sans-serif;    /* Overrides the default browser font to a clean, modern sans-serif style */
-}
 
-/* 2. Next, let's decorate the body container (the canvas of our web house) */
-body {
-    background-color: #f0f4f8;  /* Gives our background a very light, warm-gray canvas tone */
-    line-height: 1.6;           /* Adds comfortable, readable vertical spacing between lines of text */
-}
 
-/* 3. Let's style our paragraph text to complement the design */
-p {
-    color: #222f3d;             /* Uses a dark, readable slate-gray color for the text body */
-    font-size: 1rem;            /* Scales the font size relative to the root browser size (usually 16px) */
-}</code></pre>
-    </div>
+    <!--============================================ Code-Block ========================================-->
+        <h2>Example Code</h2>
+        <p>Below is a simple, focused CSS stylesheet demonstrating how we select structural HTML elements and apply custom styles to them.</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* 1. We use an element selector to target the main heading (HTML) */
+    h1 {
+        color: #4676a9;             /* Sets the text (foreground) color to a soft, professional blue */
+        text-align: center;         /* Horizontally aligns the heading text right in the middle */
+        font-family: sans-serif;    /* Overrides the default browser font to a clean, modern sans-serif style */
+    }
 
-    <P></P>
-    <hr><hr>
+    /* 2. Next, let's decorate the body container (the canvas of our web house) */
+    body {
+        background-color: #f0f4f8;  /* Gives our background a very light, warm-gray canvas tone */
+        line-height: 1.6;           /* Adds comfortable, readable vertical spacing between lines of text */
+    }
+
+    /* 3. Let's style our paragraph text to complement the design */
+    p {
+        color: #222f3d;             /* Uses a dark, readable slate-gray color for the text body */
+        font-size: 1rem;            /* Scales the font size relative to the root browser size (usually 16px) */
+    }</code></pre>
+        </div>
 
 
 
-
-    <!-- INTERACTIVE WORKSPACE -->
-        <h1>Try It Yourself</h1>
+    <!-- ================================== INTERACTIVE WORKSPACE ===================================== -->
+        <h2>Try It Yourself</h2>
         <p>Welcome to your first interactive exercise! Below is a small styling task to test your understanding of how CSS targets and styles HTML.
 
         Your HTML contains a simple call-to-action button:
@@ -71,107 +70,102 @@ p {
         <br>
         1.Set the background color to a darkend Amber (#B45A08).
         <br>
-        2.Change the text color of the button to white (#fff).
+        2.Change the text color of the button to white (#ffffff).
         <br>
         3.Change the font family to Georgia (a classic serif typeface).</p>
-    <div class="interactive-workspace">
-        
-        <!-- The Output Panel (Where they see the result) -->
-        <div class="workspace-panel">
-            <p class="panel-label">Live Preview</p>
-            <div class="preview-box">
-                <button class="signup-button">Get Started</button>
+
+
+        <div class="interactive-workspace">
+            <!-- The Output Panel (Where they see the result) -->
+            <div class="workspace-panel">
+                <p class="panel-label">Live Preview</p>
+                <div class="preview-box">
+                    <button class="signup-button">Get Started</button>
+                </div>
             </div>
+
+            <!-- The Code Editor Panel (Where they type) -->
+            <div class="workspace-panel">
+                <p class="panel-label">Your CSS</p>
+                <textarea id="user-css-input" rows="6" placeholder="Type your CSS rule here..."></textarea>
+                <button id="check-code-btn" class="action-btn">Run & Check Code</button>
+            </div>
+
+        
+            <div id="feedback-message" class="feedback-box hidden"></div>
         </div>
 
-        <!-- The Code Editor Panel (Where they type) -->
-        <div class="workspace-panel">
-            <p class="panel-label">Your CSS</p>
-            <textarea id="user-css-input" rows="6" placeholder="Type your CSS rule here..."></textarea>
-            <button id="check-code-btn" class="action-btn">Run & Check Code</button>
-        </div>
 
     
-        <div id="feedback-message" class="feedback-box hidden"></div>
-    </div>
+
+    <!-- ====================================== EXERCISE PAGE ======================================-->
+        <section id="exercise-page">
+                <div class="exercise-container">
+                    <div class="exercise-header">
+                        <h2>Exercise</h2>
+                        <p>Answer the following question</p>
+                    </div>
+
+                    <div class="question-card" data-question="1">
+                        <h2 class="question-number">Question 1</h2>
+                        <p class="question-text">Which technology is responsible for creating the semantic, raw physical structure and "bones" of a webpage?</p>
+                        <div class="options-container">
+                            <button class="option-btn">JavaScript</button>
+                            <button class="option-btn">CSS</button>
+                            <button class="option-btn" data-correct="true">HTML</button>
+                        </div>
+                        <p class="feedback-message"></p>
+                    </div>
 
 
+                    <div class="question-card" data-question="2">
+                        <h2 class="question-number">Question 2</h2>
+                        <p class="question-text">What is the primary job of JavaScript on a webpage?</p>
+                        <div class="options-container">
+                            <button class="option-btn" data-correct="true"> To add interactive action and logic—like a switch that turns a light on and off</button>
+                            <button class="option-btn">To write the raw, basic text on the screen</button>
+                            <button class="option-btn">To make the webpage background pink or blue</button>
+                        </div>
+                        <p class="feedback-message"></p>
+                    </div>
 
 
-    <hr><hr>
+                    <div class="question-card" data-question="3">
+                        <h2 class="question-number">Question 3</h2>
+                        <p class="question-text">Which technology acts as our master interior designer, deciding how much breathing room elements get and what colors to paint them?</p>
+                        <div class="options-container">
+                            <button class="option-btn"> HTML</button>
+                            <button class="option-btn">JavaScript</button>
+                            <button class="option-btn"  data-correct="true">CSS</button>
+                        </div>
+                        <p class="feedback-message"></p>
+                    </div>
+
+                    <div class="question-card" data-question="4">
+                        <h2 class="question-number">Question 4</h2>
+                        <p class="question-text">Why do search engines like Google love websites that use a neat, structured layout?</p>
+                        <div class="options-container">
+                            <button class="option-btn" data-correct="true">  Because Google acts like a "blind user" that relies on clear page structure to read, understand, and index your content</button>
+                            <button class="option-btn"> Because Google's system only likes websites painted with red and yellow.</button>
+                            <button class="option-btn"> Because Google rewards websites that have absolutely no visual style.</button>
+                        </div>
+                        <p class="feedback-message"></p>
+                    </div>
+         
+
+                    <div class="exercise-navigation">
+                        <button class="nav-btn" id="prev-btn">Previous</button>
+                        <button class="nav-btn" id="next-btn">Next</button>
+                    </div>
+                </div>       
+        </section>
+
     
-
-
-    <!-- EXERCISE PAGE-->
-   <section id="exercise-page">
-        <div class="exercise-container">
-            <div class="exercise-header">
-                <h1>Exercise</h1>
-                <p>Answer the following question</p>
-            </div>
-
-            <div class="question-card" data-question="1">
-                <h2 class="question-number">Question 1</h2>
-                <p class="question-text">Which technology is responsible for creating the semantic, raw physical structure and "bones" of a webpage?</p>
-                <div class="options-container">
-                    <button class="option-btn">JavaScript</button>
-                    <button class="option-btn">CSS</button>
-                    <button class="option-btn" data-correct="true">HTML</button>
-                    <button class="option-btn">SQL</button>
-                </div>
-                <p class="feedback-message"></p>
-            </div>
-
-
-            <div class="question-card" data-question="2">
-                <h2 class="question-number">Question 2</h2>
-                <p class="question-text">What is the primary job of JavaScript on a webpage?</p>
-                <div class="options-container">
-                    <button class="option-btn" data-correct="true"> To add interactive action and logic—like a switch that turns a light on and off</button>
-                    <button class="option-btn">To write the raw, basic text on the screen</button>
-                    <button class="option-btn">To make the webpage background pink or blue</button>
-                </div>
-                <p class="feedback-message"></p>
-            </div>
-
-
-            <div class="question-card" data-question="3">
-                <h2 class="question-number">Question 3</h2>
-                <p class="question-text">Which technology acts as our master interior designer, deciding how much breathing room elements get and what colors to paint them?</p>
-                <div class="options-container">
-                    <button class="option-btn"> HTML</button>
-                    <button class="option-btn">JavaScript</button>
-                    <button class="option-btn"  data-correct="true">CSS</button>
-                </div>
-                <p class="feedback-message"></p>
-            </div>
-
-            <div class="question-card" data-question="4">
-                <h2 class="question-number">Question 4</h2>
-                <p class="question-text">Why do search engines like Google love websites that use a neat, structured layout?</p>
-                <div class="options-container">
-                    <button class="option-btn" data-correct="true">  Because Google acts like a "blind user" that relies on clear page structure to read, understand, and index your content</button>
-                    <button class="option-btn"> Because Google's system only likes websites painted with red and yellow.</button>
-                    <button class="option-btn"> Because Google rewards websites that have absolutely no visual style.</button>
-                </div>
-                <p class="feedback-message"></p>
-            </div>
-
-           
-
-            <div class="exercise-navigation">
-                <button class="nav-btn" id="prev-btn">Previous</button>
-                <button class="nav-btn" id="next-btn">Next</button>
-            </div>
+    <!-- ======================================= Navigation =====================================-->
+        <div class="topic-nav">
+                <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
+                <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
         </div>
-        
-   </section>
-
-
-   <div class="topic-nav">
-        <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
-        <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
-   </div>
 
 
 </div>
