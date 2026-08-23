@@ -5,6 +5,7 @@
 </header>
 
 
+
 <div class="reading-zone">
     <p>Now that we know how HTML, CSS, and JavaScript work together, it is time to setup our workspace so we can start creating web sites.</p>
    
@@ -13,189 +14,195 @@
     <p>To build websites, we need a code editor. Here we will use Visual Studio Code <strong>(VS Code)</strong>, which is free and industry-standard. Think of VS Code as your high-tech easel, a clean folder on your computer (let's name it classroom) as your studio workspace, and your HTML and CSS files as your canvas and paint.</p>
 
 
-    <!--Steps to setup workspace-->
-    <h2>Setting Up The Workspace</h2>
-    <p>To make Visual Studio Code (VS Code) completely usable and ready for your HTML and CSS development, here is exactly what you need to do:</p>
-
-
-    <h4>1. Download and Install VS Code</h4>
-    <p>First, you download the free code editor from the official Microsoft site <a href="https://code.visualstudio.com/Download" target="_blank" rel="noopener noreferrer">VS Code</a> and install it. During the installation process on Windows, a vital trick is to check the boxes that say "Add to path" and "Create a desktop icon".</p>
     
+    <!-- =====================================Steps to setup workspace=================================-->
+        <h2>Setting Up The Workspace</h2>
+        <p>To make Visual Studio Code (VS Code) completely usable and ready for your HTML and CSS development, here is exactly what you need to do:</p>
 
-    <h4>2. Organizing Your Workspace</h4>
-    <p>Before writing a single line of code, we must structure our files. In web development, files are organized hierarchically relative to a central folder known as the Project Root.</p>
+
+        <h4>1. Download and Install VS Code</h4>
+        <p>First, you download the free code editor from the official Microsoft site <a href="https://code.visualstudio.com/Download" target="_blank" rel="noopener noreferrer">VS Code</a> and install it. During the installation process on Windows, a vital trick is to check the boxes that say "Add to path" and "Create a desktop icon".</p>
+        
+
+        <h4>2. Organizing Your Workspace</h4>
+        <p>Before writing a single line of code, we must structure our files. In web development, files are organized hierarchically relative to a central folder known as the Project Root.</p>
+        
+
+        <!-- ================================= Image close to text ====================================-->
+            <div class="image-closetotext">
+                <img src="assets/topic-1-2.png" alt="Project root">
+            </div>
+
+        <ul>
+            <li><strong>Create your Root Folder:</strong> Create a folder on your computer and name it classroom.</li>
+            <li><strong>Open in VS Code</strong> Open VS Code, select <strong>File > Open Folder</strong>, and open your classroom folder. This establishes your active workspace.</li>
+            <li><strong>Construct your Canvas:</strong> In the VS Code file explorer sidebar, create a new file and name it exactly index.html.</li>
+        </ul>
+
+
+        <h4>3. Creating the HTML Structure: The Emmet Boilerplate</h4>
+        <p>Every HTML document requires a baseline set of structural tags (like &lt;html&gt;, &lt;head&gt;, and &lt;body&gt;) before it is valid. Instead of typing these lines by hand, we leverage a built-in VS Code accelerator called Emmet.</p>
+        <p><strong>The Concept</strong> <br> Think of Emmet as a shorthand typing assistant. You type a simple symbol, and Emmet expands it into a fully structured block of HTML code.</p>
+        <p class="no-margin"><strong>The Syntax</strong></p>
+        <ul>
+            <li>Inside your empty index.html file, type a single exclamation mark '<strong>!</strong>'</li>
+            <li>Press Enter or Return.</li>
+            <li>VS Code will instantly expand this abbreviation into a clean, modern HTML document template:</li>
+        </ul>
+
+
+        <!-- ================================= Image close to text ====================================-->
+            <div class="image-closetotext">
+                <img src="assets/topic-1-2_emmet.png" alt="Emmet code">
+            </div>
+
+
+        <h4>4. Create the CSS File</h4>
+        <p class="no-margin">To write professional, maintainable styles, we place our code in an external stylesheet. This keeps our visual presentation completely separate from our content structure.</p>
+        <ul>
+            <li>Create a Styles Folder: Inside your classroom folder, create a new folder named css.</li>
+            <li>Create the Stylesheet: Inside that css folder, create a new file named style.css.</li>
+        </ul>
+        <p>Right now, your HTML has no idea that style.css exists. We must establish a bridge between them.</p>
+
+        <h4>5. Linking CSS with HTML</h4>
+        <p class="no-margin">To connect your HTML and CSS, we write a &lt;link&gt; tag inside the &lt;head&gt; block of your index.html. The head is reserved for "behind-the-scenes" instructions that tell the browser how to load and process the document.</p>
+        <pre><code class="no-black-bg">&lt;link rel="stylesheet" href="css/style.css"/&gt;</code></pre>
+        <p  class="no-margin"><strong>Breakdown of the Link Attributes:</strong></p>
+        <ul>
+            <li><strong>rel</strong> (Relationship): Tells the browser the nature of the linked file. For CSS, this is always "stylesheet". If you omit this attribute, your styles will not render at all.</li>
+            <li><strong>href</strong> (Hypertext Reference): The file path to your stylesheet. Because we nested our stylesheet inside a subfolder, we must write the path relative to index.html: go into the css folder, then find style.css.</li>
+        </ul>
+    <!-- ====================================================================================================================-->
+
+
     
-    <!-- ================================= Image close to text ====================================-->
-    <div class="image-closetotext">
-        <img src="assets/topic-1-2.png" alt="Project root">
-    </div>
+    <!-- ==================================== Verifying setup ======================================== -->
+        <h2>Verifying the Link </h2>
+        <p>Before writing your actual project styles, you should always run a diagnostic test to confirm your files are talking to each other.</p>
 
-    <ul>
-        <li><strong>Create your Root Folder:</strong> Create a folder on your computer and name it classroom.</li>
-        <li><strong>Open in VS Code</strong> Open VS Code, select <strong>File > Open Folder</strong>, and open your classroom folder. This establishes your active workspace.</li>
-        <li><strong>Construct your Canvas:</strong> In the VS Code file explorer sidebar, create a new file and name it exactly index.html.</li>
-    </ul>
-
-
-    <h4>3. Creating the HTML Structure: The Emmet Boilerplate</h4>
-    <p>Every HTML document requires a baseline set of structural tags (like &lt;html&gt;, &lt;head&gt;, and &lt;body&gt;) before it is valid. Instead of typing these lines by hand, we leverage a built-in VS Code accelerator called Emmet.</p>
-    <p><strong>The Concept</strong> <br> Think of Emmet as a shorthand typing assistant. You type a simple symbol, and Emmet expands it into a fully structured block of HTML code.</p>
-    <p class="no-margin"><strong>The Syntax</strong></p>
-    <ul>
-        <li>Inside your empty index.html file, type a single exclamation mark '<strong>!</strong>'</li>
-        <li>Press Enter or Return.</li>
-        <li>VS Code will instantly expand this abbreviation into a clean, modern HTML document template:</li>
-    </ul>
-    <div class="image-closetotext">
-        <img src="assets/topic-1-2_emmet.png" alt="Emmet code">
-    </div>
-    <p></p>
-
-
-    <h4>4. Create the CSS File</h4>
-    <p class="no-margin">To write professional, maintainable styles, we place our code in an external stylesheet. This keeps our visual presentation completely separate from our content structure.</p>
-    <ul>
-        <li>Create a Styles Folder: Inside your classroom folder, create a new folder named css.</li>
-        <li>Create the Stylesheet: Inside that css folder, create a new file named style.css.</li>
-    </ul>
-    <p>Right now, your HTML has no idea that style.css exists. We must establish a bridge between them.</p>
-
-    <h4>5. Linking CSS with HTML</h4>
-    <p class="no-margin">To connect your HTML and CSS, we write a &lt;link&gt; tag inside the &lt;head&gt; block of your index.html. The head is reserved for "behind-the-scenes" instructions that tell the browser how to load and process the document.</p>
-    <pre><code class="no-black-bg">&lt;link rel="stylesheet" href="css/style.css"/&gt;</code></pre>
-    <p  class="no-margin"><strong>Breakdown of the Link Attributes:</strong></p>
-    <ul>
-        <li><strong>rel</strong> (Relationship): Tells the browser the nature of the linked file. For CSS, this is always "stylesheet". If you omit this attribute, your styles will not render at all.</li>
-        <li><strong>href</strong> (Hypertext Reference): The file path to your stylesheet. Because we nested our stylesheet inside a subfolder, we must write the path relative to index.html: go into the css folder, then find style.css.</li>
-    </ul>
-
-
-    
-    <p></p>
-    <h2>Verifying the Link </h2>
-    <p>Before writing your actual project styles, you should always run a diagnostic test to confirm your files are talking to each other.</p>
-
-    <p>In your empty style.css file, write this simple rule:</p>
-    <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* style.css */
-body {
-    background-color: purple; /* Temporary high-visibility test */
-}</code></pre>
-    </div>
-
-    <h4>Checking the Result</h4>
-    <ul>
-        <li>Save both index.html and style.css.</li>
-        <li>Open index.html in your web browser.</li>
-        <li>If your screen background turns purple, your link is successful! You can now delete the test code from your CSS file and begin styling your page. If the screen remains white, a mistake has occurred.</li>
-    </ul>
-
-
-    <hr><hr>
-
-    <aside class="callout-mistake">
-        <div class="mistake-header">Common Mistake</div>
-        <p>If your purple test fails, check these common mistakes:</p>
-
-        <div class="mistake-count">
-            <h2>Mistake 1</h2>
-            <h4>The src Typo:</h4>
-            <p>Did you write src="css/style.css"? The link tag uses href, not src.</p>
+        <p>In your empty style.css file, write this simple rule:</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* style.css */
+    body {
+        background-color: purple; /* Temporary high-visibility test */
+    }</code></pre>
         </div>
 
-        <div class="mistake-count">
-            <h2>Mistake 2</h2>
-            <h4>No Relationship:</h4>
-            <p>Did you forget rel="stylesheet"? Without it, the browser ignores the link.</p>
-        </div>
-
-        <div class="mistake-count">
-            <h2>Mistake 3</h2>
-            <h4>Path Traps</h4>
-            <p>Is your CSS file actually inside the css folder? If it's floating in your main root folder alongside the HTML, change your path to href="style.css".</p>
-        </div>
-    </aside>
-
-    <hr><hr>
+        <h4>Checking the Result</h4>
+        <ul>
+            <li>Save both index.html and style.css.</li>
+            <li>Open index.html in your web browser.</li>
+            <li>If your screen background turns purple, your link is successful! You can now delete the test code from your CSS file and begin styling your page. If the screen remains white, a mistake has occurred.</li>
+        </ul>
 
 
 
-    <section id="exercise-page">
-        <div class="exercise-container">
-            <div class="exercise-header">
-                <h1>Exercise</h1>
-                <p>Answer the following question</p>
+    <!-- ===================================== Common Mistake =======================================-->
+        <aside class="callout-mistake">
+            <div class="mistake-header">Common Mistake</div>
+            <p>If your purple test fails, check these common mistakes:</p>
+
+            <div class="mistake-count">
+                <h2>Mistake 1</h2>
+                <h4>The src Typo:</h4>
+                <p>Did you write src="css/style.css"? The link tag uses href, not src.</p>
             </div>
 
-            <div class="question-card" data-question="1">
-                <h2 class="question-number">Question 1</h2>
-                <p class="question-text">Why is it considered bad practice to begin writing CSS styling before creating an HTML file?</p>
-                <div class="options-container">
-                    <button class="option-btn">Modern web browsers will throw a fatal security error if an HTML file is missing.</button>
-                    <button class="option-btn"  data-correct="true">CSS is a presentational language that has no default layout structure; it requires existing HTML elements to style.</button>
-                    <button class="option-btn">HTML files compile CSS code into binary formats that browsers can execute.</button>
-                    <button class="option-btn">VS Code will refuse to open any files with a .css extension unless an index.html is open.</button>
+            <div class="mistake-count">
+                <h2>Mistake 2</h2>
+                <h4>No Relationship:</h4>
+                <p>Did you forget rel="stylesheet"? Without it, the browser ignores the link.</p>
+            </div>
+
+            <div class="mistake-count">
+                <h2>Mistake 3</h2>
+                <h4>Path Traps</h4>
+                <p>Is your CSS file actually inside the css folder? If it's floating in your main root folder alongside the HTML, change your path to href="style.css".</p>
+            </div>
+        </aside>
+
+
+
+    <!-- ====================================== EXERCISE PAGE ======================================-->
+        <section id="exercise-page">
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h1>Exercise</h1>
+                    <p>Answer the following question</p>
                 </div>
-                <p class="feedback-message"></p>
-            </div>
 
-            <div class="question-card" data-question="2">
-                <h2 class="question-number">Question 2</h2>
-                <p class="question-text">You are trying to link your stylesheet to your HTML page, but the style is failing to load. You inspect your code and find this link tag: <strong>&lt;link src="css/style.css"&gt;</strong> Which of the following describes the syntax errors present in this tag?</p>
-                <div class="options-container">
-                    <button class="option-btn">The tag is missing the <strong>type="stylesheet"</strong> attribute.</button>
-                    <button class="option-btn">The tag is missing the closing <strong>&lt;/link&gt;</strong> tag, which is mandatory for all document link structures.</button>
-                    <button class="option-btn"  data-correct="true">The tag mistakenly uses the <strong>src</strong> attribute instead of <strong>href</strong>, and it completely omits the mandatory <strong>rel="stylesheet"</strong> relationship attribute.</button>
-                    <button class="option-btn">The stylesheet path should use backslashes (\) instead of forward slashes (/).</button>
+                <div class="question-card" data-question="1">
+                    <h2 class="question-number">Question 1</h2>
+                    <p class="question-text">Why is it considered bad practice to begin writing CSS styling before creating an HTML file?</p>
+                    <div class="options-container">
+                        <button class="option-btn">Modern web browsers will throw a fatal security error if an HTML file is missing.</button>
+                        <button class="option-btn"  data-correct="true">CSS is a presentational language that has no default layout structure; it requires existing HTML elements to style.</button>
+                        <button class="option-btn">HTML files compile CSS code into binary formats that browsers can execute.</button>
+                        <button class="option-btn">VS Code will refuse to open any files with a .css extension unless an index.html is open.</button>
+                    </div>
+                    <p class="feedback-message"></p>
                 </div>
-                <p class="feedback-message"></p>
-            </div>
 
-            <div class="question-card" data-question="3">
-                <h2 class="question-number">Question 3</h2>
-                <p class="question-text">What occurs when you type ! inside an empty HTML file in VS Code and press Enter?</p>
-                <div class="options-container">
-                    <button class="option-btn">VS Code runs a syntax validation script across your workspace folder.</button>
-                    <button class="option-btn" data-correct="true">Emmet expands the abbreviation to instantly generate a standardized HTML document template.</button>
-                    <button class="option-btn">The browser console automatically opens to show inspect element diagnostics.</button>
-                    <button class="option-btn">VS Code automatically creates a new folder named <strong>css</strong> with an empty <strong>style.css</strong> inside it.</button>
+                <div class="question-card" data-question="2">
+                    <h2 class="question-number">Question 2</h2>
+                    <p class="question-text">You are trying to link your stylesheet to your HTML page, but the style is failing to load. You inspect your code and find this link tag: <strong>&lt;link src="css/style.css"&gt;</strong> Which of the following describes the syntax errors present in this tag?</p>
+                    <div class="options-container">
+                        <button class="option-btn">The tag is missing the <strong>type="stylesheet"</strong> attribute.</button>
+                        <button class="option-btn">The tag is missing the closing <strong>&lt;/link&gt;</strong> tag, which is mandatory for all document link structures.</button>
+                        <button class="option-btn"  data-correct="true">The tag mistakenly uses the <strong>src</strong> attribute instead of <strong>href</strong>, and it completely omits the mandatory <strong>rel="stylesheet"</strong> relationship attribute.</button>
+                        <button class="option-btn">The stylesheet path should use backslashes (\) instead of forward slashes (/).</button>
+                    </div>
+                    <p class="feedback-message"></p>
                 </div>
-                <p class="feedback-message"></p>
-            </div>
 
-            <div class="question-card" data-question="4">
-                <h2 class="question-number">Question 4</h2>
-                <p class="question-text">If a developer links a stylesheet using <strong>&lt;link rel="stylesheet" href="style.css"&gt;</strong> but the file style.css actually resides inside a subfolder named css, how will the browser respond?</p>
-                <div class="options-container">
-                    <button class="option-btn">The browser will search your entire computer path to find the file automatically.</button>
-                    <button class="option-btn" data-correct="true"> The browser will fail to find and apply the stylesheet because the relative path is incorrect.</button>
-                    <button class="option-btn">The browser will throw a Mismatched Directory warning but render the styling anyway.</button>
-                    <button class="option-btn"> The browser will display the CSS rules as raw text on top of the web page.</button>
+                <div class="question-card" data-question="3">
+                    <h2 class="question-number">Question 3</h2>
+                    <p class="question-text">What occurs when you type ! inside an empty HTML file in VS Code and press Enter?</p>
+                    <div class="options-container">
+                        <button class="option-btn">VS Code runs a syntax validation script across your workspace folder.</button>
+                        <button class="option-btn" data-correct="true">Emmet expands the abbreviation to instantly generate a standardized HTML document template.</button>
+                        <button class="option-btn">The browser console automatically opens to show inspect element diagnostics.</button>
+                        <button class="option-btn">VS Code automatically creates a new folder named <strong>css</strong> with an empty <strong>style.css</strong> inside it.</button>
+                    </div>
+                    <p class="feedback-message"></p>
                 </div>
-                <p class="feedback-message"></p>
-            </div>
 
-            <div class="question-card" data-question="5">
-                <h2 class="question-number">Question 5</h2>
-                <p class="question-text">What is the purpose of writing a temporary rule like <strong>body { background-color: purple; }</strong> when setting up a new workspace?</p>
-                <div class="options-container">
-                    <button class="option-btn">It applies the official default baseline canvas properties.</button>
-                    <button class="option-btn">It establishes an alternate color palette for print media files.</button>
-                    <button class="option-btn" data-correct="true">It acts as a diagnostic test to verify that the HTML and CSS files are linked and communicating.</button>
-                    <button class="option-btn">It overrides user-agent stylesheets with preferred parent rules.</button>
+                <div class="question-card" data-question="4">
+                    <h2 class="question-number">Question 4</h2>
+                    <p class="question-text">If a developer links a stylesheet using <strong>&lt;link rel="stylesheet" href="style.css"&gt;</strong> but the file style.css actually resides inside a subfolder named css, how will the browser respond?</p>
+                    <div class="options-container">
+                        <button class="option-btn">The browser will search your entire computer path to find the file automatically.</button>
+                        <button class="option-btn" data-correct="true"> The browser will fail to find and apply the stylesheet because the relative path is incorrect.</button>
+                        <button class="option-btn">The browser will throw a Mismatched Directory warning but render the styling anyway.</button>
+                        <button class="option-btn"> The browser will display the CSS rules as raw text on top of the web page.</button>
+                    </div>
+                    <p class="feedback-message"></p>
                 </div>
-                <p class="feedback-message"></p>
+
+                <div class="question-card" data-question="5">
+                    <h2 class="question-number">Question 5</h2>
+                    <p class="question-text">What is the purpose of writing a temporary rule like <strong>body { background-color: purple; }</strong> when setting up a new workspace?</p>
+                    <div class="options-container">
+                        <button class="option-btn">It applies the official default baseline canvas properties.</button>
+                        <button class="option-btn">It establishes an alternate color palette for print media files.</button>
+                        <button class="option-btn" data-correct="true">It acts as a diagnostic test to verify that the HTML and CSS files are linked and communicating.</button>
+                        <button class="option-btn">It overrides user-agent stylesheets with preferred parent rules.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="exercise-navigation">
+                    <button class="nav-btn" id="prev-btn">Previous</button>
+                    <button class="nav-btn" id="next-btn">Next</button>
+                </div>
             </div>
-
-            <div class="exercise-navigation">
-                <button class="nav-btn" id="prev-btn">Previous</button>
-                <button class="nav-btn" id="next-btn">Next</button>
-            </div>
-        </div>
-    </section>
+        </section>
 
 
+
+    <!-- ======================================= Navigation =====================================-->
     <div class="topic-nav">
         <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
         <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
