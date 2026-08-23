@@ -1,0 +1,241 @@
+<header class="content-header">
+    <p class="chapter-label">Chapter 1: The Foundation Of Styling</p>
+    <h1 class="topic-heading">Topic 1.4: Connecting CSS to HTML</h1>
+</header>
+
+
+<div class="reading-zone">
+    <p>Now that we have explored core CSS syntax and configured our workspace, we must answer a vital question: <strong>How do we apply our CSS styles to our HTML pages?</strong></p>
+    <p>There are three main methods for connecting CSS to an HTML document. Understanding the differences between these methods is key to writing clean, maintainable, and professional code.</p>
+
+
+
+    <!-- ================================== Comparison Table ========================================-->
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Where is it written?</th>
+                    <th>Best Used For</th>
+                    <th>Production Recommendation</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Inline Styles</td>
+                    <td>Directly inside an HTML tag using the <code class="no-black-bg">style</code> attribute.</td>
+                    <td>Quick testing or JavaScript manipulation.</td>
+                    <td><strong>Avoid</strong> (increases clutter and duplicates code).</td>
+                </tr>
+
+                <tr>
+                    <td>Internal Stylesheet</td>
+                    <td>Inside a <code class="no-black-bg">&lt;style&gt;</code> block in the HTML <code class="no-black-bg">&lt;head&gt;</code>.</td>
+                    <td>Single-page styling.</td>
+                    <td><strong>Use Sparingly</strong> (cannot be shared across multiple pages).</td>
+                </tr>
+
+                <tr>
+                    <td>External Stylesheets</td>
+                    <td>In a separate <strong>.css</strong> file linked in the <code class="no-black-bg">&lt;head&gt;</code>.</td>
+                    <td>Entire multi-page websites.</td>
+                    <td><strong>Best Practice</strong> (separates content from presentation).</td>
+                </tr>
+            </tbody>
+        </table>
+
+    
+    
+    <!-- ================================== Inline CSS =========================================-->
+        <h2>Inline Styles</h2>
+        <p>Inline styles allow you to apply styles directly to a single HTML element.</p>
+        
+        <h4>Concept</h4>
+        <p>Think of inline styling like grabbing a paintbrush and painting one specific spot on a wall. You don't need a blueprint; you just apply the color directly to that specific element.</p>
+        
+        <h4>Syntax</h4>
+        <p>To write inline styles, we use the global HTML <code class="no-black-bg">style</code> attribute. Inside this attribute, we write our CSS property-value pairs inside double quotes. Notice that we <strong>do not use selectors or curly braces</strong> here—we only write the declarations themselves:</p>
+
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">HTML</span></div>
+            <pre><code>&lt;!-- Inline style example --&gt;
+
+    &lt;h1 style="color: maroon; background-color: lightgray;"&gt;
+        This heading is styled directly inline!
+    &lt;/h1&gt;
+
+    &lt;p&gt;
+        I am a normal paragraph. I remain completely unstyled because inline styles only 
+        affect the specific element they are written on!
+    &lt;/p&gt;</code></pre>
+        </div>
+
+        <h4>Why we avoid it in production:</h4>
+        <ol>
+            <li><strong>Maintenance Nightmare:</strong> If you have 10 pages with 100 headings, and you want to change their color, you have to find and edit every single HTML tag manually.</li>
+            <li><strong>Overpowered Specificity:</strong> Inline styles hold the highest priority in the CSS cascade. They will override your external stylesheets, making it incredibly difficult to debug styling issues later.</li>
+        </ol>
+
+
+
+    <!-- ====================================== Internal (Embedded) Stylesheet ======================-->
+        <h2>Internal Stylesheet</h2>
+        <p class="no-margin">Internal styles are placed inside a <code class="no-black-bg">&lt;style&gt;</code> block in the <code class="no-black-bg">&lt;head&gt;</code> section of your HTML document.</p>
+        <p>Unlike inline, it uses real CSS syntax — selectors, curly braces, the whole structure you already know from Topic 1.3.</p>
+
+        <h4>Concept</h4>
+        <p>This method is like pinning a design guide to the wall of a specific room. The instructions are kept in one centralized place, but they only apply to that specific room.</p>
+        
+        <h4>Syntax</h4>
+        <p>We open a <code class="no-black-bg">&lt;style&gt;</code> tag, write our standard CSS rules (with selectors, curly braces, and declarations), and close it with a <code class="no-black-bg">&lt;/style&gt;</code> tag:</p>
+
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">HTML</span></div>
+            <pre><code>&lt;head&gt;
+    &lt;!-- Internal style block --&gt;
+    &lt;style type="text/css"&gt;
+        p {
+            color: green;
+            font-weight: bold;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;p&gt;This paragraph is styled green and bold by our internal CSS!&lt;/p&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+
+        <h4>Why we use it rarely:</h4>
+        <p>While internal CSS is better than inline styling because it groups your styles together, it only applies to that specific HTML page. So if your website has multiple pages (like 20-50 pages), you would have to copy and paste that <code class="no-black-bg">&lt;style&gt;</code> block into every single page, also if you want to change design later you have to edit it in everypage individually one by one.</p>
+
+
+
+    <!-- ========================================= External Stylesheets ===================================-->
+        <h2>External Stylesheets</h2>
+        <p>Linking to an external stylesheet is the industry standard for professional web development.</p>
+
+        <h4>Concept</h4>
+        <p>This is like creating a master blueprint for a development. Every house in the neighborhood refers to this single, central blueprint. If you want to change the color of every roof, you only have to edit the master blueprint once!</p>
+
+        <h4>Syntax</h4>
+        <ol>
+            <li>Write your CSS rules in a separate plain-text file named <code class="no-black-bg">style.css</code> (no HTML tags allowed!).</li>
+            <li>Link this stylesheet to your HTML page using a <code class="no-black-bg">&lt;link&gt;</code> tag inside the <code class="no-black-bg">&lt;head&gt;</code> block of your HTML:</li>
+        </ol>
+
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">HTML</span></div>
+            <pre><code>&lt;head&gt;
+    &lt;!-- External stylesheet link --&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;</code></pre>
+        </div>
+
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* style.css */
+p {
+  color: green;
+  font-weight: bold;
+}</code></pre>
+        </div>
+
+        <h4>Breakdown of the <code class="no-black-bg">&lt;link&gt;</code> attributes:</h4>
+        <ul>
+            <li><strong>rel (Relationship):</strong> tells the browser the nature of the linked file. For CSS, this must be set exactly to <code class="no-black-bg">"stylesheet"</code>. If you omit this attribute, your styles will not render!</li>
+            <li><strong>href (hypertext reference):</strong> the file path to your <code class="no-black-bg">.css</code> file. This is a path, not a URL keyword — get the folder structure wrong and it silently fails too.</li>
+        </ul> 
+        
+        <h4>Why this is the industry standard:</h4>
+        <ul>
+            <li><strong>Single point of update:</strong> change style.css, every linked page reflects it instantly.</li>
+            <li><strong>Separation of concerns:</strong> HTML handles structure/content, CSS handles appearance. Nothing mixed together.</li>
+            <li><strong>Reusability:</strong> one file, unlimited pages.</li>    
+        </ul>
+
+
+
+    <!-- ====================================== EXERCISE PAGE ======================================-->
+        <section id="exercise-page">
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h2>Exercise</h2>
+                    <p>Answer the following question</p>
+                </div>
+
+                <div class="question-card" data-question="1">
+                    <h2 class="question-number">Question 1</h2>
+                    <p class="question-text">Which of the following link tags is syntactically correct and will successfully apply an external stylesheet to an HTML document?</p>
+                    
+                    <div class="options-container">
+                        <button class="option-btn"><code class="no-black-bg">&lt;link src="css/style.css"&gt;</code></button>
+                        <button class="option-btn" data-correct="true"><code class="no-black-bg">&lt;link rel="stylesheet" type="text/css" href="css/style.css"&gt;</code></button>
+                        <button class="option-btn"><code class="no-black-bg">&lt;link rel="stylesheet" src="style.css"&gt; &lt;/link&gt;</code></button>
+                        <button class="option-btn"><code class="no-black-bg">&lt;stylesheet href="css/style.css"&gt;</code></button>
+                    </div>
+                    
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="2">
+                    <h2 class="question-number">Question 2</h2>
+                    <p class="question-text">If a developer styles a paragraph's color as green using an external stylesheet, but writes <code class="no-black-bg">&lt;p style="color: blue;"&gt;</code>directly on the HTML tag, what color will the paragraph text display in?</p>
+                
+                    <div class="options-container">
+                        <button class="option-btn">Green, because external stylesheets are loaded last in the document.</button>
+                        <button class="option-btn" data-correct="true">Blue, because inline styles are closest to the element and hold the highest priority in the cascade.</button>
+                        <button class="option-btn">Dark charcoal, because conflicting style rules cause the browser to default to its user-agent styles.</button>
+                        <button class="option-btn">The styles will break and render as plain text.</button>
+                    </div>
+
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="3">
+                    <h2 class="question-number">Question 3</h2>
+                    <p class="question-text">What is the major disadvantage of using Internal (Embedded) CSS inside a &lt;style&gt; tag for a multi-page website?</p>
+                
+                    <div class="options-container">
+                        <button class="option-btn">It prevents browsers from using developer tools to inspect elements.</button>
+                        <button class="option-btn">You cannot write CSS selectors inside internal style tags.</button>
+                        <button class="option-btn" data-correct="true">You have to duplicate the style block onto every single HTML page, making site-wide updates incredibly tedious to maintain.</button>
+                        <button class="option-btn">It has a lower specificity score than browser user-agent defaults.</button>
+                    </div> 
+
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="4">
+                    <h2 class="question-number">Question 4</h2>
+                    <p class="question-text">You write an external CSS stylesheet, but when you open your HTML page, the styles do not render. You inspect your code and find this line: <code class="no-black-bg">&lt;link href="css/style.css"&gt;</code> Why is the browser ignoring this stylesheet?</p>
+                
+                    <div class="options-container">
+                        <button class="option-btn">The link tag must be placed inside the body tag rather than the head.</button>
+                        <button class="option-btn" data-correct="true">The tag is missing the mandatory <code class="no-black-bg">rel="stylesheet"</code> relationship attribute.</button>
+                        <button class="option-btn">External stylesheets require a closing &lt;/link&gt; tag to compile correctly.</button>
+                        <button class="option-btn">The browser is waiting for an alternate stylesheet selection menu.</button>
+                    </div>
+
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="exercise-navigation">
+                    <button class="nav-btn" id="prev-btn">Previous</button>
+                    <button class="nav-btn" id="next-btn">Next</button>
+                </div>
+
+            </div>
+        </section>
+
+        
+
+    <!-- ======================================= Navigation =====================================-->
+        <div class="topic-nav">
+                <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
+                <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
+        </div>
+
+        
+</div>
