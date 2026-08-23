@@ -38,6 +38,16 @@
     font-weight: 700;
 }
 
+.h2-with-margin {
+    margin-block: 30px 20px;
+}
+
+.reading-zone h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
 
 .reading-zone p {
     margin-bottom: 30px;

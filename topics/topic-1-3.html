@@ -5,6 +5,7 @@
 </header>
 
 <div class="reading-zone">
+
     <p>Welcome to your first deep dive into writing actual CSS rules! In our previous lessons, we learned how HTML, CSS, and JavaScript divide their duties, and we configured our VS Code workspaces. Now, we are going to learn the exact language mechanics the browser uses to read and apply your style designs.</p>
     
     <p>Before writing code, let’s understand what a CSS Rule actually is.</p>
@@ -16,187 +17,207 @@
     </ul>
 
 
-    <h1>Structure Of CSS Rule</h1>
-    <p>A CSS rule is structured as follows:</p>
-    <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>selector {
-    property: value;
+
+    <!-- ============================================ Structure Of CSS Syntax ============================================= -->
+        <h2>Structure Of CSS Rule</h2>
+        <p>A CSS rule is structured as follows:</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>selector {
+        property: value;
 }</code></pre>
-    </div>
+        </div>
+        
+        <p>Let's break down each component:</p>
+        <ul>
+            <li><p><strong>The Selector</strong>: The targeting query on the left. It identifies the HTML element to style. Note that you target the tag by name and never write HTML brackets &lt; &gt; in CSS (e.g., write h1, not &lt;h1&gt;).</p></li>
+            <li><p><strong>Curly Braces { }</strong>: These wrap your declaration block. Everything inside these braces is applied to the targeted selector.</p></li>
+            <li><p><strong>The Property</strong>: The visual feature you want to change (such as color for text color).</p></li>
+            <li><p><strong>The Value</strong>: The exact setting you are applying to that property (such as red).</p></li>
+            <li><p><strong>The Colon ( : )</strong>: Placed between the property and the value to separate them.</p></li>
+            <li><p><strong>The Semicolon ( ; )</strong>: Placed at the very end of the declaration. It acts as a statement terminator.</p></li>
+        </ul>
+
+
+  
+    <!-- ============================================ Types Of Declaration ============================================= -->
+        <h2 class="h2-with-margin">Types Of Declaration</h2>
+        <h3>Single Declaration Rule</h3>
+        <p class="no-margin">When changing only one style on an element, your rule is simple:</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* Targets all H1 headings and makes them maroon */
+    h1 {
+        color: maroon;
+    }</code></pre>
+        </div>
+        <h3>Grouped Declaration Block</h3>
+        <p>To make multiple changes to the same element, you group your declarations inside a single set of curly braces. Semicolons are absolutely critical here because they tell the browser where one instruction ends and the next begins.</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* All three declarations are grouped inside one block */
+    p {
+        color: gray;
+        font-size: 20px;
+        text-align: center;
+    }</code></pre>
+        </div>
+
+   
+
+    <!-- ===================================== prettier rules ==========================================-->
+        <h2 class="h2-with-margin">Whitespace and Indentation Rules</h2>
+        <p>The browser's rendering engine ignores extra spaces, tabs, and line breaks. This means you can technically write a rule on a single line, but doing so is considered poor practice because it is difficult to read:</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* Hard to read and maintain */
+    h1 { color: red; font-size: 30px; text-align: center; }
+
+    /* Clean, readable, and professional (Recommended) */
+    h1 {
+        color: red;
+        font-size: 30px;
+        text-align: center;
+    }</code></pre>
+        </div>
+
+
+
+
+    <!-- ===================================== Missing Semicolon ==========================================-->
+        <h2>Missing Semicolon</h2>
+        <p>If you forget a semicolon, the browser ignores your line breaks and merges adjacent declarations.</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* BROKEN CODE: Missing semicolon after "red" */
+    h1 {
+        color: red
+        font-size: 30px;
+    }
+    </code></pre>
+        </div>
+        <p>Because the semicolon after red is missing, the browser reads this as a single broken instruction: color: <strong>red font-size 30px;</strong></p>
+        <p>Since <strong>red font-size 30px</strong> is not a valid value for the color property, the browser discards the entire rule and your styles disappear. Always terminate your statements with a semicolon!</p>
+
+
     
-    <p>Let's break down each component:</p>
-    <ul>
-        <li><p><strong>The Selector</strong>: The targeting query on the left. It identifies the HTML element to style. Note that you target the tag by name and never write HTML brackets &lt; &gt; in CSS (e.g., write h1, not &lt;h1&gt;).</p></li>
-        <li><p><strong>Curly Braces {}</strong>: These wrap your declaration block. Everything inside these braces is applied to the targeted selector.</p></li>
-        <li><p><strong>The Property</strong>: The visual feature you want to change (such as color for text color).</p></li>
-        <li><p><strong>The Value</strong>: The exact setting you are applying to that property (such as red).</p></li>
-        <li><p><strong>The Colon (:)</strong>: Placed between the property and the value to separate them.</p></li>
-        <li><p><strong>The Semicolon (;)</strong>: Placed at the very end of the declaration. It acts as a statement terminator.</p></li>
-    </ul>
 
-
-    <hr><hr>
-
-
-    <h1>Types Of Declaration</h1>
-    <p></p>
-    <h2>Single Declaration Rule</h2>
-    <p class="no-margin">When changing only one style on an element, your rule is simple:</p>
-    <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* Targets all H1 headings and makes them maroon */
-h1 {
-    color: maroon;
-}</code></pre>
-    </div>
-    <p></p>
-    <h2>Grouped Declaration Block</h2>
-    <p>To make multiple changes to the same element, you group your declarations inside a single set of curly braces. Semicolons are absolutely critical here because they tell the browser where one instruction ends and the next begins.</p>
-    <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* All three declarations are grouped inside one block */
-p {
-    color: gray;
-    font-size: 20px;
-    text-align: center;
-}
-</code></pre>
-    </div>
-
-
-    <hr><hr>
-    
-
-    <h1>Whitespace and Indentation Rules</h1>
-    <p>The browser's rendering engine ignores extra spaces, tabs, and line breaks. This means you can technically write a rule on a single line, but doing so is considered poor practice because it is difficult to read:</p>
-    <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* Hard to read and maintain */
-h1 { color: red; font-size: 30px; text-align: center; }
-
-/* Clean, readable, and professional (Recommended) */
-h1 {
-    color: red;
-    font-size: 30px;
-    text-align: center;
-}
-</code></pre>
-    </div>
-
-
-    <hr><hr>
-
-    
-    <h1>Missing Semicolon</h1>
-    <p>If you forget a semicolon, the browser ignores your line breaks and merges adjacent declarations.</p>
-    <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>/* BROKEN CODE: Missing semicolon after "red" */
-h1 {
-    color: red
-    font-size: 30px;
-}
-</code></pre>
-    </div>
-    <p>Because the semicolon after red is missing, the browser reads this as a single broken instruction: color: <strong>red font-size 30px;</strong></p>
-    <p>Since <strong>red font-size 30px</strong> is not a valid value for the color property, the browser discards the entire rule and your styles disappear. Always terminate your statements with a semicolon!</p>
-
-
-    <hr><hr>
-
-
-    <h1>Unknown Properties and Values</h1>
-    <p>If you make a typo in a property name or supply an unpermitted value, the browser simply discards that one invalid declaration while continuing to parse the rest of your stylesheet normally.</p>
-    <div class="code-container">
-        <div class="code-header"><span class="code-lang">CSS</span></div>
-        <pre><code>p {
+    <!-- ===================================== Unknown Properties and Values ==========================================-->
+        <h2>Unknown Properties and Values</h2>
+        <p>If you make a typo in a property name or supply an unpermitted value, the browser simply discards that one invalid declaration while continuing to parse the rest of your stylesheet normally.</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>p {
     brain-size: 2cm;       /* INVALID: Discarded by the browser */
     color: ultraviolet;    /* INVALID: Discarded by the browser */
     text-align: center;    /* VALID: Applied normally */
 }</code></pre>
-    </div>
-    <p>In your browser's DevTools (Inspect Element), invalid properties will be crossed out and flagged with a warning icon to help you debug them. Don't worry, we'll learn it later</p>
+        </div>
+        <p>In your browser's DevTools (Inspect Element), invalid properties will be crossed out and flagged with a warning icon to help you debug them. Don't worry, we'll learn it later</p>
 
-
-    <hr><hr>
 
     
-    <section id="exercise-page">
-        <div class="exercise-container">
-            <div class="exercise-header">
-                <h1>Exercise</h1>
-                <p>Answer the following question</p>
+    <!-- ===================================== Common Mistake =======================================-->
+        <div class="callout-mistake">
+            <div class="mistake-header">Common Mistake</div>        
+
+            <div class="mistake-count">
+                <h2>Mistake 1</h2>
+                <h4>The "Omitted Semicolon"</h4>
+                <p class="no-margin">A semicolon (;) separates CSS declarations. If you forgat one, the browser may combine two declarations and treat them as invalid. For example:</p>
+                <pre><code class="no-black-bg">color: red font-size: 20px;</code></pre>
+                <p>The browser cannot understand this as a valid color value, so the style is ignored. Always end your declarations with a semicolon to avoid unexpected errors.</p>
             </div>
 
-            <div class="question-card" data-question="1">
-                <h2 class="question-number">Question 1</h2>
-                <p class="question-text">Which of the following is a syntactically correct CSS rule targeting paragraph elements?</p>
-                <div class="options-container">
-                    <button class="option-btn">&lt;p&gt; { color: red; }</button>
-                    <button class="option-btn">p { color = red; }</button>
-                    <button class="option-btn"  data-correct="true">p { color: red; }</button>
-                    <button class="option-btn">p ( color: red; )</button>
-                </div>
-                <p class="feedback-message"></p>
-            </div>
-
-            <div class="question-card" data-question="2">
-                <h2 class="question-number">Question 2</h2>
-                <p class="question-text">If a developer writes h2 { color: blue font-size: 20px; } with no semicolon after blue, how will the browser interpret the rule?</p>
-                <div class="options-container">
-                    <button class="option-btn">It will apply the blue color but ignore the font size.</button>
-                    <button class="option-btn">It will apply the font size but ignore the blue color.</button>
-                    <button class="option-btn"  data-correct="true">It will merge the properties into a single invalid declaration and ignore both styles.</button>
-                    <button class="option-btn">It will automatically insert the missing semicolon and render both styles.</button>
-                </div>
-                <p class="feedback-message"></p>
-            </div>
-
-            <div class="question-card" data-question="3">
-                <h2 class="question-number">Question 3</h2>
-                <p class="question-text">What is the primary role of the colon : in a CSS declaration?</p>
-                <div class="options-container">
-                    <button class="option-btn">It marks the end of a style rule set.</button>
-                    <button class="option-btn" data-correct="true">It separates the property name from its declared value.</button>
-                    <button class="option-btn">It groups multiple selectors together.</button>
-                    <button class="option-btn">It indicates that the declaration is invalid.</button>
-                </div>
-                <p class="feedback-message"></p>
-            </div>
-
-            <div class="question-card" data-question="4">
-                <h2 class="question-number">Question 4</h2>
-                <p class="question-text">If a browser parses a CSS stylesheet and encounters an unknown property name like widget-width: 50px;, what action does it take?</p>
-                <div class="options-container">
-                    <button class="option-btn">It stops reading the entire stylesheet and throws a fatal syntax error.</button>
-                    <button class="option-btn" data-correct="true">It ignores and discards only that invalid declaration while continuing to parse the other valid styles.</button>
-                    <button class="option-btn">It overrides the default browser layout and displays the raw code on the screen.</button>
-                    <button class="option-btn">It applies the style to the closest matching tag.</button>
-                </div>
-                <p class="feedback-message"></p>
-            </div>
-
-            <div class="question-card" data-question="5">
-                <h2 class="question-number">Question 5</h2>
-                <p class="question-text">Why is it highly recommended to place each CSS declaration on a separate, indented line inside the curly braces?</p>
-                <div class="options-container">
-                    <button class="option-btn">Browsers will refuse to run CSS code that is written on a single line.</button>
-                    <button class="option-btn">It increases the specificity weight of the selector.</button>
-                    <button class="option-btn" data-correct="true">It organizes your code, making rules easy for humans to read and maintain as stylesheets grow.</button>
-                    <button class="option-btn">It is a mandatory requirement for linking external spreadsheets.</button>
-                </div>
-                <p class="feedback-message"></p>
-            </div>
-
-            <div class="exercise-navigation">
-                <button class="nav-btn" id="prev-btn">Previous</button>
-                <button class="nav-btn" id="next-btn">Next</button>
-            </div>
+            <div class="mistake-count">
+                <h2>Mistake 2</h2>
+                <h4>HTML Brackets in CSS:</h4>
+                <p class="no-margin">CSS does not use HTML angle brackets <strong>( &lt; &gt; )</strong>. Writing <strong>&lt;h1&gt;</strong> tells the browser to look for something that doesn't exist in CSS. write the selector directly:</p>
+                <pre><code class="no-black-bg">h1 { color: red; }</code></pre>
+            </div> 
         </div>
-    </section>
 
 
+
+
+    <!-- ====================================== EXERCISE PAGE ======================================-->
+        <section id="exercise-page">
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h1>Exercise</h1>
+                    <p>Answer the following question</p>
+                </div>
+
+                <div class="question-card" data-question="1">
+                    <h2 class="question-number">Question 1</h2>
+                    <p class="question-text">Which of the following is a syntactically correct CSS rule targeting paragraph elements?</p>
+                    <div class="options-container">
+                        <button class="option-btn">&lt;p&gt; { color: red; }</button>
+                        <button class="option-btn">p { color = red; }</button>
+                        <button class="option-btn"  data-correct="true">p { color: red; }</button>
+                        <button class="option-btn">p ( color: red; )</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="2">
+                    <h2 class="question-number">Question 2</h2>
+                    <p class="question-text">If a developer writes h2 { color: blue font-size: 20px; } with no semicolon after blue, how will the browser interpret the rule?</p>
+                    <div class="options-container">
+                        <button class="option-btn">It will apply the blue color but ignore the font size.</button>
+                        <button class="option-btn">It will apply the font size but ignore the blue color.</button>
+                        <button class="option-btn"  data-correct="true">It will merge the properties into a single invalid declaration and ignore both styles.</button>
+                        <button class="option-btn">It will automatically insert the missing semicolon and render both styles.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="3">
+                    <h2 class="question-number">Question 3</h2>
+                    <p class="question-text">What is the primary role of the colon ':' in a CSS declaration?</p>
+                    <div class="options-container">
+                        <button class="option-btn">It marks the end of a style rule set.</button>
+                        <button class="option-btn" data-correct="true">It separates the property name from its declared value.</button>
+                        <button class="option-btn">It groups multiple selectors together.</button>
+                        <button class="option-btn">It indicates that the declaration is invalid.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="4">
+                    <h2 class="question-number">Question 4</h2>
+                    <p class="question-text">If a browser parses a CSS stylesheet and encounters an unknown property name like widget-width: 50px; what action does it take?</p>
+                    <div class="options-container">
+                        <button class="option-btn">It stops reading the entire stylesheet and throws a fatal syntax error.</button>
+                        <button class="option-btn" data-correct="true">It ignores and discards only that invalid declaration while continuing to parse the other valid styles.</button>
+                        <button class="option-btn">It overrides the default browser layout and displays the raw code on the screen.</button>
+                        <button class="option-btn">It applies the style to the closest matching tag.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="5">
+                    <h2 class="question-number">Question 5</h2>
+                    <p class="question-text">Why is it highly recommended to place each CSS declaration on a separate, indented line inside the curly braces?</p>
+                    <div class="options-container">
+                        <button class="option-btn">Browsers will refuse to run CSS code that is written on a single line.</button>
+                        <button class="option-btn">It increases the specificity weight of the selector.</button>
+                        <button class="option-btn" data-correct="true">It organizes your code, making rules easy for humans to read and maintain as stylesheets grow.</button>
+                        <button class="option-btn">It is a mandatory requirement for linking external spreadsheets.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="exercise-navigation">
+                    <button class="nav-btn" id="prev-btn">Previous</button>
+                    <button class="nav-btn" id="next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- ======================================= Navigation =====================================-->
     <div class="topic-nav">
         <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
         <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
