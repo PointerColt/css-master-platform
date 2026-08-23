@@ -1,0 +1,147 @@
+<header class="content-header">
+    <p class="chapter-label">Chapter 1: The Foundation Of Styling</p>
+    <h1 class="topic-heading">Topic 1.5: DevTools Diagnostics</h1>
+</header>
+
+<div class="reading-zone">
+    <p>When writing stylesheets, you will inevitably run into a situation where a style does not look the way you planned. Rather than guessing and scrolling through hundreds of lines of code in VS Code, web developers use a built-in diagnostic tool: Browser Developer Tools (often called Inspect Element or DevTools).</p>
+    <p>Think of DevTools as an interactive, live X-ray magnifying glass for your website. It lets you peer beneath the surface, inspect your layout, and debug styles on the fly.</p>
+
+    <!-- ========================================= Devtools basic ================================-->
+        <h2>Opening and Using the Devtools</h2>
+        <p class="no-margin">To open DevTools in any modern browser (Chrome, Firefox, Safari, or Edge):</p>
+
+        <ol>
+            <li>Right-click anywhere on your webpage and select Inspect.</li>
+            <li>A dashboard will slide open on the side or bottom of your browser window.</li>
+        </ol>
+
+        <h4>The Target Element Pointer:</h4>
+        <p>At the top-left of the DevTools panel, you will find a small icon resembling a mouse cursor pointing at a box. Click this icon, then hover your mouse over the elements on your live page. You will see colored boxes highlight each element:</p>
+
+        <ul>
+            <li>Blue Highlight: The core Content of your element.</li>
+            <li>Green Highlight: The empty breathing room around your content (Padding).</li>
+            <li>Orange Highlight: The pushing space outside your border (Margin).</li>
+        </ul>
+
+    
+
+    <!-- =========================================== Specificity fight ==========================-->
+        <h2>Spotting Overridden Styles</h2>
+        <p>As we learned in previous lessons, the CSS Cascade and Specificity rules determine which styles win when there is a conflict. DevTools shows you this process in real-time.</p>
+        <p>Under the Styles tab, your CSS rules are sorted in reverse-cascade order. The winning styles are always displayed at the very top, while the losing styles have a <strong>strikethrough (horizontal line)</strong> running through them.</p>
+
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* Example of how an overridden rule appears inside DevTools: */
+h1 {
+    color: red; /* Crossed out with a line through it */
+}
+h1 {
+    color: blue; /* On top, no strikethrough (The Winner!) */
+}</code></pre>
+        </div>
+
+        <p>This lets you instantly identify why a specific style isn't working—you can see exactly which rule came in later or carried a higher specificity weight to override it!</p>
+    
+    
+
+    <!-- ========================================= Finding and Fixing Typos ============================-->
+        <h2>Finding and Fixing Typos</h2>
+        <p>If you make a typo in a CSS property name or forget a semicolon, VS Code will try to highlight it, but DevTools provides the ultimate diagnostic proof.</p>
+        <p>When the browser encounters a broken style rule, it places a <strong>yellow warning exclamation icon</strong> directly next to the invalid property. If you hover your cursor over that exclamation point, a tooltip will pop up with a description of the error, such as <code class="no-black-bg">"unknown property name"</code>.</p>
+
+
+
+    <!-- ======================================== User Agent Stylesheet =================================-->
+        <h2>The Browser's Default Styles</h2>
+        <p>Before you write even a single line of CSS, the browser applies its own built-in stylesheet to your elements. These are called User Agent Stylesheets.</p>
+        <p>These defaults are why your unstyled headings are large and bold, and your list items have bullet points. When you inspect an element, you can scroll down the Styles tab to see these user agent rules. The moment you write your own custom styles, you will see those user agent lines crossed out as your author styles take priority.</p>        
+
+
+
+    <!-- ======================================= Notedown ========================================-->
+    <h2>Testing Idea's</h2>
+    <p>You can double-click any style inside the DevTools panel and change it in real-time (like toggling background colors from white to blue). This is a fantastic playground for testing ideas, but these changes are strictly temporary! The moment you reload the page, all your browser tweaks disappear. You must manually copy your favorite styles back into your actual .css file in VS Code to make them permanent.</p>
+    
+
+
+    <!-- ======================================= Exercise =======================================-->
+        <section id="exercise-page">
+                <div class="exercise-container">
+                    <div class="exercise-header">
+                        <h2>Exercise</h2>
+                        <p>Answer the following question</p>
+                    </div>
+
+                    <div class="question-card" data-question="1">
+                        <h2 class="question-number">Question 1</h2>
+                        <p class="question-text">When inspecting a webpage in Chrome DevTools, what do the green and orange highlighted areas around an element represent?</p>
+                        <div class="options-container">
+                            <button class="option-btn">Green represents broken HTML tags, and orange represents JavaScript warning flags.</button>
+                            <button class="option-btn" data-correct="true">Green represents padding space, and orange represents margin space.</button>
+                            <button class="option-btn">Green represents element text color, and orange represents background colors.</button>
+                            <button class="option-btn">Green represents persistent styles, and orange represents alternate styles.</button>
+                        </div>
+                        <p class="feedback-message"></p>
+                    </div>
+
+
+                    <div class="question-card" data-question="2">
+                        <h2 class="question-number">Question 2</h2>
+                        <p class="question-text">If you inspect an element and see a CSS rule with a <strong>horizontal line running through it (strikethrough)</strong>, what does this tell you?</p>
+                        <div class="options-container">
+                            <button class="option-btn">The rule has a syntax typo and is completely broken.</button>
+                            <button class="option-btn">The rule is a browser default style that cannot be changed.</button>
+                            <button class="option-btn" data-correct="true">The rule has been overridden by a more specific or later CSS rule under the cascade.</button>
+                            <button class="option-btn">The rule was successfully saved directly to your VS Code file.</button>
+                        </div>
+                        <p class="feedback-message"></p>
+                    </div>
+
+                    <div class="question-card" data-question="3">
+                        <h2 class="question-number">Question 3</h2>
+                        <p class="question-text">What does a yellow warning exclamation icon next to a CSS rule inside the Styles panel indicate?</p>
+                        <div class="options-container">
+                            <button class="option-btn">The style rule is currently active and rendering perfectly.</button>
+                            <button class="option-btn">The browser is warning you that the page background is too bright.</button>
+                            <button class="option-btn">The rule is a user agent style that cannot be overridden.</button>
+                            <button class="option-btn" data-correct="true">There is a typo or syntax error in the property name or its declared value.</button>
+                        </div>
+                        <p class="feedback-message"></p>
+                    </div>
+
+                    <div class="question-card" data-question="4">
+                        <h2 class="question-number">Question 4</h2>
+                        <p class="question-text">A developer opens DevTools, double-clicks a paragraph's color property, changes it from black to blue to test how it looks, and then refreshes the browser. What happens to the paragraph's color?</p>
+                        <div class="options-container">
+                            <button class="option-btn">It remains blue because browser changes are automatically saved to the stylesheet file.</button>
+                            <button class="option-btn" data-correct="true">It reverts to black because browser edits are only temporary.</button>
+                            <button class="option-btn">The browser crashes due to an unsaved workspace conflict</button>
+                            <button class="option-btn">The text turns purple to warn the developer of a temporary file match.</button>
+                        </div>
+                        <p class="feedback-message"></p>
+                    </div>
+
+                    <div class="question-card" data-question="5">
+                        <h2 class="question-number">Question 5</h2>
+                        <p class="question-text">What is a User Agent Stylesheet?</p>
+                        <div class="options-container">
+                            <button class="option-btn">A stylesheet injected by Google's indexing crawl system.</button>
+                            <button class="option-btn">A file created when you save temporary changes inside the DevTools Styles tab.</button>
+                            <button class="option-btn" data-correct="true">The browser's built-in default stylesheet that styles unstyled elements.</button>
+                            <button class="option-btn">A CSS file specifically optimized for paper printing layouts.</button>
+                        </div>
+                        <p class="feedback-message"></p>
+                    </div>
+
+                    <div class="exercise-navigation">
+                        <button class="nav-btn" id="prev-btn">Previous</button>
+                        <button class="nav-btn" id="next-btn">Next</button>
+                    </div>
+                </div>       
+        </section>
+
+        
+</div>
