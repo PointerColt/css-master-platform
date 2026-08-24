@@ -1,0 +1,218 @@
+<header class="content-header">
+    <p class="chapter-label">Chapter 1: The Foundation Of Styling</p>
+    <h1 class="topic-heading">Topic 1.6: CSS Comments</h1>
+</header>
+
+
+
+<div class="reading-zone">
+    <p>As your stylesheets grow, leaving notes for yourself (and other developers) becomes essential. In CSS, we do this using <strong>Comments</strong>.</p>
+    <p>A comment is simply a block of text that the browser's rendering engine completely ignores. Think of a comment as a "note in a bottle"—it is written purely for human eyes, helping you organize your code, explain complex designs, or troubleshoot layout issues.</p>
+    
+
+
+    <!-- ==================================================== Syntax ==========================================-->
+    <h2>The Comment Syntax</h2>
+    <p class="no-margin">In CSS, comments have a very specific set of starting and ending markers. They are identical to the comment markers used in languages like C++.</p>
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>/* This is a CSS comment */</code></pre>
+    </div>
+    <ul>
+        <li><strong>To Open a Comment:</strong> Type a forward slash and an asterisk <code class="no-black-bg">( /* )</code>.</li>
+        <li><strong>To Close a Comment:</strong> Type an asterisk and a forward slash <code class="no-black-bg">( */ )</code>.</li>
+    </ul>
+
+    <p><em>Instructor Tip:</em>There must be <strong>no spaces</strong> between the slash and the asterisk. Writing <code class="no-black-bg">/ *</code> or <code class="no-black-bg">* /</code> will break the comment and cause the browser to look for a non-existent style property, breaking your code!</p>
+
+
+
+    <!-- ======================================== Multi-Line Comments =============================================-->
+        <h2>Multi-Line Comments</h2>
+        <p>CSS comments are highly flexible; they can span a single line or cover multiple lines without needing to declare new markers on every line.</p>
+
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* 
+This is a multi-line comment.
+You can write as much detail as you want here.
+The browser will safely ignore everything until it sees the closing marker!
+*/
+
+p {
+    color: darkgray;
+}</code></pre>
+        </div>
+
+
+
+    <!-- ========================================== The VS Code Shortcut =======================================-->
+        <h2>VS Code Shortcut</h2>
+        <p>Instead of manually typing slashes and asterisks every time, you can let your code editor do the heavy lifting!</p>
+
+        <ul>
+            <li><strong>The Shortcut:</strong> Highlight the code you want to comment out and press <code class="no-black-bg">Ctrl + /</code> (Windows) or <code class="no-black-bg">Cmd + /</code> (Mac).</li>
+            <li><strong>What Happens:</strong> VS Code will instantly wrap your highlighted text in <code class="no-black-bg">/*</code> and <code class="no-black-bg">*/</code>. Pressing the shortcut again on the same line will immediately remove the markers!</li>
+            <li><strong>Visual Guide:</strong> Commented-out text will turn a distinct color (usually green), letting you know it is safely disabled.</li>
+        </ul>
+
+
+    <!-- ======================================== The Critical Danger: Nested Comments ===============================-->
+        <h2>Danger: Nested Comments</h2>
+        <p class="no-margin">One of the biggest traps in CSS is attempting to nest comments inside one another. <strong>CSS comments cannot be nested</strong>.</p>
+        <p>To understand why this is a nightmare, let's look at what we call the <strong>"Comment-ception Trap"</strong>.</p>
+
+        <p>Imagine you have styled an element and left a helpful note inside it:</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* My original styling block */
+h1 {
+    color: red; /* Make headings standout */
+    font-size: 32px;
+}
+</code></pre>
+        </div>
+        
+        <p>Now, during debugging, you decide to temporarily disable this entire h1 style block. You wrap the whole block in an "outer" set of comment markers:</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/*  &lt;-- Outer Comment Starts
+h1 {
+    color: red; /* Make headings standout */  &lt;-- Inner Comment ends here!
+    font-size: 32px;
+}
+*/  &lt;-- This is left floating as raw, broken text!</code></pre>
+        </div>
+
+        <h4>Why it Breaks:</h4>
+        <p>The browser's parser reads from left to right. When it sees the very first <code class="no-black-bg">/*</code>, it turns everything into a comment. However, as it scans forward, <strong>it stops the comment at the very first <code class="no-black-bg">*/</code> it encounters</strong>—which is the end of your internal comment (<code class="no-black-bg">/* Make headings standout */</code>)!</p>
+
+        <p>The browser then assumes the comment is officially over. It treats the remaining lines (<code class="no-black-bg">font-size: 32px;</code>, <code class="no-black-bg">}</code>, and <code class="no-black-bg">*/</code> ) as active CSS code. Because these fragments are broken, your entire stylesheet can stop rendering!</p>
+
+
+
+
+    <!-- ================================================= Comman Mistake ==============================================-->
+        <div class="callout-mistake">
+            <div class="mistake-header">Common Mistake</div>
+
+            <div class="mistake-count">
+                <h2>Mistake 1</h2>
+                <h4>JavaScript Double-Slash Mistake:</h4>
+                <p> In JavaScript, you can write a comment using double slashes (<code class="no-black-bg">// This is a comment</code>). This is completely illegal in CSS! Writing <code class="no-black-bg">// color: red;</code> will confuse the browser parser and can cause it to ignore your styles entirely. Always use <code class="no-black-bg">/* */</code>.</p>
+            </div>
+
+            <div class="mistake-count">
+                <h2>Mistake 2</h2>
+                <h4>HTML Comment Spill:</h4>
+                <p>Never use HTML comment markers (<code class="no-black-bg">&lt;!-- --&gt;</code>) inside your external <code class="no-black-bg">.css</code> files. Only standard CSS comment delimiters are allowed.</p>
+            </div>
+
+            <div class="mistake-count">
+                <h2>Mistake 3</h2>
+                <h4>Nesting Comments Trap</h4>
+                <p>Always keep check on nesting of comments, see above explanation (Danger: Nested comments) on this for detail understanding</p>
+            </div>
+        </div>
+
+
+
+    <!-- ====================================== EXERCISE PAGE ======================================-->
+        <section id="exercise-page">
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h1>Exercise</h1>
+                    <p>Answer the following question</p>
+                </div>
+
+                <div class="question-card" data-question="1">
+                    <h2 class="question-number">Question 1</h2>
+                    <p class="question-text">Which of the following represents a syntactically correct CSS comment?</p>
+                    <div class="options-container">
+                        <button class="option-btn"><code class="no-black-bg">// This is a comment</code></button>
+                        <button class="option-btn"  data-correct="true"><code class="no-black-bg">/* This is a comment */</code></button>
+                        <button class="option-btn"><code class="no-black-bg">&lt;!-- This is a comment --&gt;</code></button>
+                        <button class="option-btn"><code class="no-black-bg">/* This is a comment *\</code></button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="2">
+                    <h2 class="question-number">Question 2</h2>
+                    <p class="question-text">If you highlight a block of code in VS Code and press <code class="no-black-bg">Ctrl + / </code>(Windows) or <code class="no-black-bg">Cmd + /</code> (Mac), what will happen?</p>
+                    <div class="options-container">
+                        <button class="option-btn">The editor will automatically delete the selected code.</button>
+                        <button class="option-btn">The editor will format the indentation of your styles.</button>
+                        <button class="option-btn"  data-correct="true">The editor will wrap the selected code in CSS comment delimiters, disabling it.</button>
+                        <button class="option-btn">The editor will open the browser console developer tools.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="3">
+                    <h2 class="question-number">Question 3</h2>
+                    <p class="question-text">Why does the following block of code break the browser's CSS parser?</p>
+                    <div class="code-container">
+                        <pre><code>/* 
+  h1 { 
+     color: red; /* Heading Accent */ 
+     font-size: 20px;
+  }
+*/</code></pre>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn">Because the <strong>h1</strong> selector is not written with HTML brackets.</button>
+                        <button class="option-btn"  data-correct="true"> Because CSS comments cannot be nested; the first <strong>*/</strong> encountered terminates the entire comment block early, leaving the rest as broken code.</button>
+                        <button class="option-btn">Because the background color was not declared alongside the text color.</button>
+                        <button class="option-btn">Because comments cannot span more than a single line.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="4">
+                    <h2 class="question-number">Question 4</h2>
+                    <p class="question-text">A developer writes <code class="no-black-bg">// background-color: purple;</code> in their external CSS stylesheet. How will a modern browser handle this line?</p>
+                    <div class="options-container">
+                        <button class="option-btn">It will render a purple background, because double slashes are a shortcut for background styles.</button>
+                        <button class="option-btn">It will ignore the line but trigger a warning alert in the HTML head.</button>
+                        <button class="option-btn"  data-correct="true">It will fail to recognize the double slashes as a valid CSS comment, treating it as broken syntax and potentially ignoring subsequent styles.</button>
+                        <button class="option-btn">It will automatically convert the double slashes into an HTML comment.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="5">
+                    <h2 class="question-number">Question 5</h2>
+                    <p class="question-text">When using comments alongside active style rules, what occurs in the following snippet?</p>
+                    <div class="code-container">
+                        <pre><code>h1 { color: gray; }  /* This comment has been split
+h2 { color: silver; }   over two lines without closing the first. */</code></pre>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn">Both H1 and H2 elements style correctly.</button>
+                        <button class="option-btn">Only the H2 element styles correctly, while the H1 element is ignored.</button>
+                        <button class="option-btn"  data-correct="true">Only the H1 element styles correctly, while the H2 element rule is swallowed by the unclosed comment.</button>
+                        <button class="option-btn">The browser ignores both elements and defaults to inline styles.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                
+
+                <div class="exercise-navigation">
+                    <button class="nav-btn" id="prev-btn">Previous</button>
+                    <button class="nav-btn" id="next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- ======================================= Navigation =====================================-->
+        <div class="topic-nav">
+            <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
+            <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
+        </div>
+
+
+</div>
