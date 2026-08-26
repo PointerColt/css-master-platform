@@ -10,4 +10,10 @@
     --accent-hover: #8A4406;   /* darker amber for hover, keeps contrast on light bg */
     --border-color: #E4DFD3;  /* soft warm border, barely visible - separates sections */
     --font-main: 'Inter', sans-serif;
+    --code-container-bg: #0d1117; /* Darker Github-style background */
+    --code-header-bg: #161b22;
+    --incorrect-bg: #a52a2a; /* Red for incorrect */
+    --correct-bg: #1f8b4c; /* Green for correct */
+    --incorrect-border: #ef4444;
+    --correct-border: #22c55e;
 }

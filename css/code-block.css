@@ -1,6 +1,6 @@
 /* =================================== 7. PREMIUM CODE BLOCKS =====================================*/
 .code-container {
-    background-color: #0d1117; /* Darker Github-style background */
+    background-color: var(--code-container-bg); /* Darker Github-style background */
     border: 1px solid var(--border-color);
     border-radius: 8px;
     margin: 30px 30px;
@@ -8,7 +8,7 @@
 }
 
 .code-header {
-    background-color: #161b22;
+    background-color: var(--code-header-bg);
     padding: 10px 15px;
     justify-content: space-between;
     align-items: center;
@@ -41,7 +41,7 @@ pre {
 
 code {
     font-family: 'Courier New', Courier, monospace; /* Classic coding font */
-    color: #c9d1d9; /* Off-white for code text */
+    color: var(--bg-base); /* Off-white for code text */
     font-size: 0.95rem;
 }
 

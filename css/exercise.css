@@ -121,13 +121,13 @@
 }
 
 .option-btn.correct {
-    background: #1f8b4c; /* Green for correct */
-    border-color: #2ecc71;
-    color:white;
+    background: var(--correct-bg); 
+    border-color: var(--correct-border);
+    color:var(--bg-surface);
 }
 
 .option-btn.incorrect {
-    background: #a52a2a; /* Red for incorrect */
-    border-color: #ff5c5c;
-    color:white;
+    background: var(--incorrect-bg); 
+    border-color: var(--incorrect-border);
+    color:var(--bg-surface);
 }

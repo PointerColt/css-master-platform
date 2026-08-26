@@ -50,7 +50,7 @@ checkButton.addEventListener('click', function() {
         feedbackBox.innerHTML = "Correct! You perfectly styled the button.";
         feedbackBox.className = "feedback-box success-msg";
     } else {
-        feedbackBox.innerHTML = "Not quite. Make sure the button has Amber background (#22466c), White text, and a georgia font.";
+        feedbackBox.innerHTML = "Not quite. Make sure the button has Amber background (#B45A08), White text, and a georgia font.";
         feedbackBox.className = "feedback-box error-msg";
     }
 });
