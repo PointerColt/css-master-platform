@@ -1,0 +1,337 @@
+<header class="content-header">
+    <p class="chapter-label">Chapter 2: The Cascade, Specificity, and Inheritance</p>
+    <h1 class="topic-heading">Topic 2.1: The CSS Cascade</h1>
+</header>
+
+
+<div class="reading-zone">
+    <p>Welcome to Chapter 2! Up to this point, you have learned how to set up your workspace, write basic style rules, and link stylesheets to your HTML. But as your websites grow, you will quickly run into a major question: <strong>What happens when multiple CSS rules target the same element and try to apply conflicting styles?</strong></p>
+    <p>The browser doesn't crash, and it doesn't make a random guess. Instead, it relies on a beautiful, mathematical sorting engine called the Cascade.</p>
+
+
+
+    <!-- ============================================== Cascading ==========================================-->
+        <h2>What is the Cascade?</h2>
+        <p>To understand the Cascade, let's use a real-world analogy.</p>
+        <p>Imagine you are a builder building a new house, and you are trying to decide what color to paint the front door. You receive instructions from three different people:</p>
+        <ol>
+            <li><strong>The City Building Code</strong> says: "All doors in this neighborhood must default to white."</li>
+            <li><strong>The Homeowner</strong> says: "I want my door to be painted navy blue."</li>
+            <li><strong>The Homeowner (shouting in an emergency)</strong> says: "Actually, paint it bright red so emergency workers can find it!"</li>
+        </ol>
+
+        <p>To resolve these conflicting instructions, you follow a strict chain of command. You automatically ignore the city code because the homeowner has a higher say. And you ignore the homeowner's first request because their emergency shout takes ultimate priority.</p>
+
+        <p>In CSS, the browser does the exact same thing. The <strong>Cascade</strong> is a series of four <strong>cascading filters</strong> that your styles flow through. only the styles that survive every single filter are actually painted on the element.</p>
+        
+    
+    
+    <!-- ============================================= The 4-Step Cascade Sorting Process ============================-->
+        <h2>The Four Cascading Filters</h2>
+        <div class="fc-container">
+            <div class="fc-head-foot">
+                When a conflict occurs, the browser runs the styles through these four steps, in order:
+            </div>
+            <div class="grid-box">
+                <div class="fc-box">
+                    <div class="box-number">
+                        <p>1</p>
+                    </div>
+                    <div>
+                        <h4>Match Check</h4>
+                        <p>Filter out rules that don't target this element</p>
+                    </div>
+                </div>
+
+                <div class="fc-box">
+                    <div class="box-number">
+                        <p>2</p>
+                    </div>
+                    <div>
+                        <h4>Origin & Importance</h4>
+                        <p>Compare normal vs. <strong>!important</strong> rules. <strong>!important</strong> wins.</p>
+                    </div>
+                </div>
+
+                <div class="fc-box">
+                    <div class="box-number">
+                        <p>3</p>
+                    </div>
+                    <div>
+                        <h4>Specificity</h4>
+                        <p>Tie-breaker: Most specific selector wins</p>
+                    </div>
+                </div>
+
+                <div class="fc-box">
+                    <div class="box-number">
+                        <p>4</p>
+                    </div>
+                    <div>
+                        <h4>Source order</h4>
+                        <p>Tie-breaker: Last rule written wins</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="fc-head-foot">
+                Let's break down each step in detail
+            </div>
+        </div>
+    
+
+
+    <!-- ============================================= Detail of these steps =======================================-->
+
+        <!-- ====================================== Step 1 =============================-->
+            <h2>Step 1: Match Check</h2>
+            <p>The browser scans all stylesheets (browser defaults, linked stylesheets, and inline attributes) and finds every single rule that matches the target element. Any rule that doesn't target the element is filtered out.</p>
+            
+        
+
+        <!-- ====================================== Step 2 ==============================-->
+            <h2>Step 2: Origin & Importance</h2>
+            <p>Not all style instructions carry the same authority. The browser groups the matching rules into five distinct levels of priority based on <strong>where they came from (Origin)</strong> and <strong>how urgent they are (Importance):</strong></p>
+            
+            <!-- ====================== Table =====================-->
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Priority Level</th>
+                            <th>Origin & Importance Type</th>
+                            <th>Explanation</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>1 (Highest)</td>
+                            <td>Reader <code class="no-black-bg">!important</code></td>
+                            <td>Custom accessibility styles set by the user marked with <code class="no-black-bg">!important</code>.</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Author <code class="no-black-bg">!important</code></td>
+                            <td>Styles written by you (the developer) marked with <code class="no-black-bg">!important</code>.</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Author Normal</td>
+                            <td>Your standard CSS rules and styles.</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Reader Normal</td>
+                            <td>Standard settings set by the user in their browser preferences.</td>
+                        </tr>
+
+                        <tr>
+                            <td>5 (lowest)</td>
+                            <td>User Agent Defaults</td>
+                            <td>The browser's built-in default styles (like blue links or bold headings).</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            <h4>What is <code class="no-black-bg">!important</code>?</h4>
+            <p>If you want to override the normal cascade hierarchy, you can append the keyword <code class="no-black-bg">!important</code> to the end of any CSS value. This acts like "shouting" to the browser, raising that single declaration's weight up to a higher tier.</p>
+
+            <div class="code-container">
+                <div class="code-header"><span class="code-lang">CSS</span></div>
+                <pre><code>/* An Author Normal declaration */
+p {
+    color: gray;
+}
+
+/* An Author Important declaration (wins the origin battle!) */
+p {
+    color: red !important;
+}</code></pre>
+            </div>
+
+
+
+        <!-- ========================================= Step 3 =======================================-->
+            <h2>Step 3: Specificity</h2>
+            <p>If conflicting rules exist within the same origin level (for example, two developer-written rules), the browser uses <strong>Specificity</strong> to break the tie.</p>
+            
+            <p class="no-margin">The rule carrying the more specific selector wins, regardless of where it is written.</p>
+            <ul>
+                <li>An <strong>ID Selector</strong> (<code class="no-black-bg">#featured</code>) is highly specific (0,1,0,0).</li>
+                <li>A <strong>Class Selector</strong> (<code class="no-black-bg">.highlight</code>) is moderately specific (0,0,1,0).</li>
+                <li>An <strong>Element Selector</strong> (<code class="no-black-bg">p</code>) is very generic (0,0,0,1).</li>
+            </ul>
+
+            <div class="code-container">
+                <div class="code-header"><span class="code-lang">CSS</span></div>
+                <pre><code>/* Class Selector (Specificity: 0,0,1,0) - WINS! */
+.highlight {
+    color: blue;
+}
+
+/* Element Selector (Specificity: 0,0,0,1) - LOSES */
+p {
+    color: red;
+}</code></pre>
+            </div>
+
+            <p><em>Even if the paragraph selector is written last, the class selector wins because it is more specific.</em></p>
+
+
+
+        <!-- ========================================== Step 4 =======================================-->
+            <h2>Step 4: Source Order</h2>
+            <p>If the browser evaluates origin, importance, and specificity, and still finds a perfect tie, it uses <strong>Source Order</strong> as its final tie-breaker: <strong>the rule written later in the document wins</strong>.</p>
+
+            <div class="code-container">
+                <div class="code-header"><span class="code-lang">CSS</span></div>
+                <pre><code>/* Class Selector (Specificity: 0,0,1,0) - WINS! */
+.highlight {
+    color: blue;
+}
+
+/* Element Selector (Specificity: 0,0,0,1) - LOSES */
+p {
+    color: red;
+}</code></pre>
+            </div>
+
+
+
+    <!-- ===================================================== Comman Mistake ===========================================-->
+        <div class="callout-mistake">
+            <div class="mistake-header">Common Mistake</div>
+
+            <div class="mistake-count">
+                <h2>Mistake 1</h2>
+                <h4>The Scattered Selector Trap:</h4>
+                <p>Avoid styling the exact same element selector in different places across your stylesheet. Writing h1 rules on line 10, line 50, and line 200 splits up your thoughts and leads to conflicting styles that are incredibly hard to trace. <strong>Keep all declarations for a selector grouped together in a single rule set</strong>.</p>
+            </div>
+
+            <div class="mistake-count">
+                <h2>Mistake 2</h2>
+                <h4>The "Later is Always Better" Myth:</h4>
+                <p>Do not assume a style will win just because you wrote it at the bottom of your CSS file. Remember, <strong>Source Order is only used if Specificity is a tie</strong>. A class selector at the very top of your file will always defeat an element selector at the bottom.</p>
+            </div>
+
+            <div class="mistake-count">
+                <h2>Mistake 3</h2>
+                <h4>The Shorthand property Overkill:</h4>
+                <p>If you append <code class="no-black-bg">!important</code> to a shorthand property like <code class="no-black-bg">background: blue !important;</code>, you are applying <code class="no-black-bg">!important</code> to every background sub-property (color, image, repeat, positioning) simultaneously. This can cause unexpected layout bugs because you cannot easily overwrite those sub-properties later.</p>
+            </div>
+        </div>
+
+
+
+
+     <!-- ====================================== EXERCISE PAGE ======================================-->
+        <section id="exercise-page">
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h1>Exercise</h1>
+                    <p>Answer the following question</p>
+                </div>
+
+                <div class="question-card" data-question="1">
+                    <h2 class="question-number">Question 1</h2>
+                    <p class="question-text">If two CSS rules have the exact same specificity and weight, how does the browser determine which style to apply?</p>
+                    <div class="options-container">
+                        <button class="option-btn">It applies the style written first in the stylesheet.</button>
+                        <button class="option-btn">It ignores both styles and defaults to the browser's user agent stylesheet.</button>
+                        <button class="option-btn"  data-correct="true">It applies the style written later (further down) in the stylesheet because of Source Order.</button>
+                        <button class="option-btn">It merges the values together to create a hybrid color style.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="2">
+                    <h2 class="question-number">Question 2</h2>
+                    <p class="question-text">Which of the following levels in the Cascade Origin & Importance hierarchy holds the <strong>absolute highest</strong> priority?</p>
+                    <div class="options-container">
+                        <button class="option-btn">Author Normal (Standard developer styles)</button>
+                        <button class="option-btn"  data-correct="true">User Agent Declarations (Browser default styles)</button>
+                        <button class="option-btn">Author <code class="no-black-bg">!important</code> (Developer-defined urgent styles)</button>
+                        <button class="option-btn"  data-correct="true">Reader <code class="no-black-bg">!important</code> (User-defined accessibility styles)</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="3">
+                    <h2 class="question-number">Question 3</h2>
+                    <p class="question-text">Why is the "Scattered Selector Trap" (styling the same selector like h1 in multiple independent blocks across a stylesheet) considered a bad development habit?</p>
+                    <div class="options-container">
+                        <button class="option-btn">It lowers the specificity score of the selector.</button>
+                        <button class="option-btn">It deactivates the link to your HTML file.</button>
+                        <button class="option-btn"  data-correct="true">It splits your code, making it incredibly difficult to follow and causing unexpected overrides you forgot you wrote.</button>
+                        <button class="option-btn">It prevents browser Developer Tools from inspecting the page.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="4">
+                    <h2 class="question-number">Question 4</h2>
+                    <p class="question-text">Imagine you have written these two rules in your stylesheet targeting the exact same paragraph:</p>
+                    <div class="code-container">
+                        <pre><code>p {
+    color: green;
+}
+
+p {
+    color: orange;
+}</code></pre>
+                    </div>
+                    <p>Since both selectors are a perfect tie in specificity, what color will your paragraph text actually display in, and why?</p>
+                    <div class="options-container">
+                        <button class="option-btn">Green, because the browser prefers the very first instruction it reads.</button>
+                        <button class="option-btn"  data-correct="true">Orange, because it is written later in the stylesheet, winning the source order tie-breaker.</button>
+                        <button class="option-btn">Red, because conflicting color styles cause a syntax error that defaults to red.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="5">
+                    <h2 class="question-number">Question 5</h2>
+                    <p class="question-text">Look at the following CSS snippet:</p>
+                    <div class="code-container">
+                        <pre><code>/* Line 10 */
+.accent-text {
+    color: green;
+}
+
+/* Line 50 */
+p {
+    color: orange;
+}</code></pre>
+                    </div>
+                    <p>If a paragraph carries the class class="accent-text", what color will it render, and why?</p>
+                    <div class="options-container">
+                        <button class="option-btn">Orange, because Line 50 comes later in the source order.</button>
+                        <button class="option-btn"  data-correct="true">Green, because class selectors carry higher specificity than element selectors.</button>
+                        <button class="option-btn">Charcoal gray, because conflicting rules cause a syntax failure.</button>
+                        <button class="option-btn">Orange, because element selectors have a higher origin priority than classes.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+            
+                <div class="exercise-navigation">
+                    <button class="nav-btn" id="prev-btn">Previous</button>
+                    <button class="nav-btn" id="next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- ======================================= Navigation =====================================-->
+        <div class="topic-nav">
+            <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
+            <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
+        </div>
+
+
+</div>
