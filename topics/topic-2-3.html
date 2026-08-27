@@ -1,0 +1,279 @@
+<header class="chapter-header">
+    <p class="chapter-label">Chapter 2: The Cascade, Specificity, and Inheritance</p>
+    <h1 class="topic-heading">Topic 2.3: Calculations of Specificity</h1>
+</header>
+
+
+<div class="reading-zone">
+    <p>When writing CSS, you will frequently find that different style rules are trying to change the color or size of the exact same element. We already know that the <strong>Cascade</strong> is the engine that resolves these conflicts.</p>
+    <p>Today, we are going to look at the second and most powerful filter of that engine: <strong>Specificity</strong>.</p>    
+
+
+
+    <!-- ============================================== Priority scorecard analogy =========================================-->
+    <h2>Priority scorecard analogy</h2>
+    <p>To understand specificity, let's use a real-world analogy.</p>
+
+    <p class="no-margin">Imagine you are looking at a map.</p>
+    <ul>
+        <li>If someone tells you: "Find a <strong>building</strong> in Delhi", that is a generic instruction. It is hard to find because there are millions of buildings.</li>
+        <li>If they tell you: "Find a <strong>library</strong> in Delhi", that is slightly more specific.</li>
+        <li>If they tell you: "Find the<strong> natinal Library Delhi Main Branch</strong>", that is extremely specific. There is only one!</li>
+    </ul>
+
+    <p class="no-margin">In CSS, the browser evaluates selectors the exact same way. The more specific your selector is, the higher its priority score.</p>
+    <table class="comparison-table">
+                    <tbody>
+                        <tr>
+                            <td>Generic:</td>
+                            <td>p</td>
+                            <td>(Targets any paragraph)</td>
+                        </tr>
+
+                        <tr>
+                            <td>Specific:</td>
+                            <td>.alert</td>
+                            <td>(Targets only paragraphs with class="alert")</td>
+                        </tr>
+
+                        <tr>
+                            <td>Extreme:</td>
+                            <td>#promo</td>
+                            <td>(Targets one unique element with id="promo")</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+    <!-- ============================================== The 3-column system [ID, Class, Element] ===========================-->
+    <h2>The 3-column system</h2>
+    <p>To determine which selector is more specific, the browser calculates a mathematical score written in three independent columns: <strong>[ID, Class, Element]</strong></p>
+    
+    <ul>
+        <li>Element Column: Counts raw HTML tags (e.g., h1, p, div)</li>
+        <li>Class Column: Counts classes (e.g., .accent), attributes, and pseudo-classes</li>
+        <li>ID Column: Counts unique ID selectors (e.g., #featured)</li>
+    </ul>
+
+    <p>Let's look at how the browser counts these elements inside various selectors: mathematical calculation</p>
+    
+
+    <h3>Example 1: The Tag Selector</h3>
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>p {
+    color: red;
+}</code></pre>
+    </div>
+    <p>We have exactly one element tag (p). Score: 0, 0, 1</p>
+
+
+    <h3>Example 2: The Class Selector</h3>
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>.accent {
+    color: blue;
+}</code></pre>
+    </div>
+    <p>We have exactly one class selector (.accent). Score: 0, 1, 0.</p>
+
+
+    <h3>Example 3: Descendant Combinations</h3>
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>main .accent {
+    color: green;
+}</code></pre>
+    </div>
+    <p>We have one tag (main) and one class (.accent). Score: 0, 1, 1.</p>
+    
+
+    <h3>Example 4: The Pseudo-Class</h3>
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>a:hover {
+    color: orange;
+}</code></pre>
+    </div>
+    <p>We have one tag (a) and one pseudo-class (:hover which behaves exactly like a class). Score: 0, 1, 1.</p>
+
+
+    <h3>Example 5: The ID Selector</h3>
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>#featured-box {
+    color: purple;
+}</code></pre>
+    </div>
+    <p>We have exactly one ID selector (#featured-box). Score: 1, 0, 0.</p>
+    
+
+    <p><em>Note: If you write your styles directly in the HTML file using an inline style="..." attribute, it bypasses these selectors entirely and scores a massive 1, 0, 0, 0 in a hidden fourth column, instantly overriding external stylesheets!</em></p>
+
+
+
+
+    <!-- ======================================== Debunking the points-scale myth ================================ -->
+        <h2>Debunking myth</h2>
+        <p class="no-margin">Many CSS tutorials teach specificity as a simple points scale:</p>
+        <ul>
+            <li>Element = 1 point</li>
+            <li>Class = 10 points</li>
+            <li>ID = 100 points</li>
+        </ul>
+
+        <p><strong>This is a myth! </strong>Specificity is a <strong>coordinate score</strong>, not a base-10 number. The columns <strong>never carry over</strong> to the next column.</p>
+        <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>/* Selector A (1 class selector) = [10] */
+.accent { color: red; } 
+
+/* Selector B (13 element tags combined) = [11] */
+body main div section table tr td ul li em strong { color: blue; }</code></pre>
+        </div>
+
+        <p>Using the points myth, you might assume Selector B wins because "11 points beats 10 points."</p>
+        <p><strong>But in reality, Selector A wins!</strong> The browser compares scores column-by-column, starting from left to right. Because Selector A has a 1 in the Class column, it defeats Selector B's 0 in the Class column. The element column can never roll over to override a class selector, no matter how many tags you chain together!</p>
+
+
+
+    <!-- ================================================ ID Selectors vs. Attribute Selectors ======================== -->
+        <h2>ID Selectors vs. Attribute Selectors</h2>
+        <p>Targeting an element using an ID selector is not the same as targeting it using an ID attribute selector.</p>
+        <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>/* Selector A: ID Selector (Specificity = (1, 0, 0)) - WINS! */
+#meadow { color: green; }
+
+/* Selector B: ID Attribute Selector (Specificity = (0, 1, 0)) - LOSES */
+*[id="meadow"] { color: red; }</code></pre>
+        </div>
+
+        <p>Even though both selectors target the exact same HTML element, Selector A wins because attribute selectors are calculated in the Class/Attribute column (0,1,0), whereas true ID selectors are calculated in the ID column (1,0,0).</p>
+
+
+
+    <!-- ===================================================== Comman Mistake ===========================================-->
+        <div class="callout-mistake">
+            <div class="mistake-header">Common Mistake</div>
+
+            <div class="mistake-count">
+                <h2>Mistake 1</h2>
+                <h4>The Overpowered ID Lock:</h4>
+                <p>Avoid using ID selectors <code class="no-black-bg">(#)</code>for general styling. Because they carry a high specificity score of <code class="no-black-bg">(1, 0, 0,)</code> they are extremely difficult to override, forcing you to write increasingly complex selectors to make small design adjustments. Stick to class selectors for reusable styles!</p>
+            </div>
+
+            <div class="mistake-count">
+                <h2>Mistake 2</h2>
+                <h4>The Inherited Styles Illusion:</h4>
+                <p>Inherited values have no specificity at all. This is why a direct match from the universal selector (*), which has a specificity of <code class="no-black-bg">(0, 0, 0,)</code> will override inherited text colors.</p>
+            </div>
+        </div>
+
+
+
+    <!-- ====================================== EXERCISE PAGE ======================================-->
+        <section id="exercise-page">
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h2>Exercise</h2>
+                    <p>Answer the following question</p>
+                </div>
+
+                <div class="question-card" data-question="1">
+                    <h2 class="question-number">Question 1</h2>
+                    <p class="question-text">What is the specificity score of the following selector?</p>
+                    <div class="code-container">
+                        <pre><code>main div.alert p</code></pre>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn">1, 0, 0</button>
+                        <button class="option-btn">0, 0, 4</button>
+                        <button class="option-btn" data-correct="true">0, 1, 3</button>
+                        <button class="option-btn">0, 1, 4</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="2">
+                    <h2 class="question-number">Question 2</h2>
+                    <p class="question-text">Rule A: <code class="no-black-bg">.accent { color: red; }</code> scores <code class="no-black-bg">0, 1, 0</code>.<br>Rule B: <code class="no-black-bg">body main div section table tr td ul li em strong { color: blue; }</code> scores <code class="no-black-bg">0, 0, 11</code>.</p>
+                    <p>Which rule wins the cascade conflict, and why?</p>
+                    <div class="options-container">
+                        <button class="option-btn">Rule B, because 11 element selectors outweigh a single class.</button>
+                        <button class="option-btn" data-correct="true">Rule A, because the class column is compared before the element column, and columns never carry over.</button>
+                        <button class="option-btn">Both rules fail and the browser defaults to the User Agent Stylesheet.</button>
+                        <button class="option-btn">Whichever rule was written first in the stylesheet wins.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="3">
+                    <h2 class="question-number">Question 3</h2>
+                    <p class="question-text">Which of the following selectors carries the highest specificity score?</p>
+                    <div class="options-container">
+                        <button class="option-btn">body main section p</button>
+                        <button class="option-btn">p.highlight</button>
+                        <button class="option-btn">*[id="lead-text"]</button>
+                        <button class="option-btn" data-correct="true">#lead-text</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="4">
+                    <h2 class="question-number">Question 4</h2>
+                    <p class="question-text"><code class="no-black-bg">#meadow</code> scores <code class="no-black-bg">1, 0, 0</code>. <code class="no-black-bg">[id="meadow"]</code> scores <code class="no-black-bg">0, 1, 0</code>. Both target the same element — why does <code class="no-black-bg">#meadow</code> win?</p>
+                    <div class="options-container">
+                        <button class="option-btn" data-correct="true">ID selectors are compiled in the ID column, whereas attribute selectors are compiled in the lower-priority Class/Attribute column.</button>
+                        <button class="option-btn">Attribute selectors are only supported in old browsers.</button>
+                        <button class="option-btn">ID selectors must be written inside an inline style tag to compile.</button>
+                        <button class="option-btn">The browser ignores attribute selectors during specificity checks.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="5">
+                    <h2 class="question-number">Question 5</h2>
+                    <p class="question-text">What is the specificity score of a pseudo-class selector like <code class="no-black-bg">:hover</code>?</p>
+                    <div class="options-container">
+                        <button class="option-btn">It carries no specificity because it represents a user action, not a static style.</button>
+                        <button class="option-btn" data-correct="true">It is calculated in the Class column, contributing 0, 1, 0.</button>
+                        <button class="option-btn">It is calculated in the ID column, contributing 1, 0, 0.</button>
+                        <button class="option-btn">It is calculated in the Element column, contributing 0, 0, 1.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="6">
+                    <h2 class="question-number">Question 6</h2>
+                    <p class="question-text">Two rules both target the same button:</p>
+                    <div class="code-container">
+                        <pre><code>#submit-btn { background-color: green; }   /* 1, 0, 0 */
+        .btn.primary { background-color: blue; }   /* 0, 2, 0 */</code></pre>
+                    </div>
+                    <p>Even though <code class="no-black-bg">.btn.primary</code> uses two classes, what color does the button render, and why?</p>
+                    <div class="options-container">
+                        <button class="option-btn">Blue, because two classes combined outweigh a single ID.</button>
+                        <button class="option-btn" data-correct="true">Green, because a single ID selector always outweighs any number of class selectors.</button>
+                        <button class="option-btn">Blue, because it's written with two selectors instead of one.</button>
+                        <button class="option-btn">The styles conflict and default to black.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="exercise-navigation">
+                    <button class="nav-btn" id="prev-btn">Previous</button>
+                    <button class="nav-btn" id="next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- ======================================= Navigation =====================================-->
+        <div class="topic-nav">
+            <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
+            <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
+        </div>
+
+</div>
