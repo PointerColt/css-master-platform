@@ -74,6 +74,6 @@ sidebarLinks.forEach(link => {
 
 
 // Load the very first topic automatically when the website first opens
-loadContent('topics/topic-2-3.html');
+loadContent('topics/topic-1-1.html');
 
 

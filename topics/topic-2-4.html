@@ -1,0 +1,194 @@
+<header class="content-header">
+    <p class="chapter-label">Chapter 2: The Cascade, Specificity, and Inheritance</p>
+    <h1 class="topic-heading">Topic 2.4: Selector Chaining</h1>
+</header>
+
+
+<div class="reading-zone">
+    <p>Hello, future CSS master! Up to this point, we have learned how to style elements using a single class name (like <code class="no-black-bg">.accent</code> or <code class="no-black-bg">.warning</code>). But in the real world, elements are rarely that simple.</p>
+    <p class="no-margin">Imagine you are packing for a trip. You have a pile of clothes, and you want to organize them:</p>
+    <ul>
+        <li>Some clothes are warm (like jackets and sweaters).</li>
+        <li>Some clothes are waterproof (like raincoats and umbrellas).</li>
+    </ul>
+
+    <p>Now, what if you are looking for a jacket that is <strong>both warm and waterproof</strong> ? You don't want a warm cotton sweater, and you don't want a thin plastic raincoat. You only want the item that has <strong>both traits</strong> at the same time.</p>
+    <p>In HTML, we can give a single element multiple traits by assigning it multiple classes.</p>
+
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">HTML</span></div>
+        <pre><code>&lt;p class="warm waterproof"&gt;I am both warm and waterproof!&lt;/p&gt;</code></pre>
+    </div>
+
+    <p><em>(Notice that we separate our classes in HTML with a simple space).</em></p>
+
+    <p class="no-margin">To target this specific element in CSS, we use a superpower called Selector Chaining. We run our class names together in CSS with no spaces:</p>
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>.warm.waterproof {
+    color: blue;
+}</code></pre>
+    </div>
+
+    <p class="no-margin">This tells the browser: "Only style elements that carry the <code class="no-black-bg">.warm</code> class AND the <code class="no-black-bg">.waterproof</code> class at the exact same time".</p>
+    <p>Let's dive into the syntax and see why this is a crucial tool in your layout toolkit!</p>
+
+
+
+    <!-- ============================================= The Code Example ======================================= -->
+    <h2>The Example code</h2>
+    <p>Here is a clean, focused stylesheet demonstrating how to target elements with single classes versus chained classes.</p>
+
+    <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>/* --- 1. General Base Classes --- */
+
+    /* Targets any element carrying the "urgent" class */
+    .urgent {
+        color: red; /* Generates urgent red text */
+    }
+
+    /* Targets any element carrying the "warning" class */
+    .warning {
+        border: 2px solid orange; /* Adds a warning border outline */
+    }
+
+
+
+/* --- 2. The Chained Selector (No Spaces!) --- */
+
+    /* Targets ONLY elements that have BOTH the "urgent" and "warning" classes */
+    /* Specificity: 0, 2, 0 (Two classes = double the specificity!) */
+    .urgent.warning {
+        background-color: yellow; /* Highlights the urgent warning box in yellow */
+    }
+
+
+/* --- 3. Chaining with Element Tags --- */
+
+    /* Targets only &lt;h2&gt; elements that carry both "urgent" and "warning" classes */
+    /* Specificity: 0, 2, 1 (One element tag + two classes) */
+    h2.urgent.warning {
+        text-transform: uppercase; /* CAPITALIZES the heading text */
+    }</code></pre>
+    </div>
+
+
+    <!-- ===================================================== Comman Mistake ===========================================-->
+        <div class="callout-mistake">
+            <div class="mistake-header">Common Mistake</div>
+
+            <div class="mistake-count">
+                <h2>Mistake 1</h2>
+                <h4>The Descendant Space Trap:</h4>
+                <p class="no-margin">The most common bug for beginners is putting a space between classes in CSS.</p>
+                <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>/* BROKEN: Space in between */
+.urgent .warning { background: yellow; }
+
+/* CORRECT: No space in between */
+.urgent.warning { background: yellow; }</code></pre>
+                </div>
+                <ul>
+                    <li><strong>With a spac</strong>e, the browser thinks this is a descendant selector. It will look for an element with the class <code class="no-black-bg">.warning</code> nested inside a parent element with the class <code class="no-black-bg">.urgent</code></li>
+                    <li><strong>Without a space</strong>, it correctly targets a single element that holds both classes on its tag.</li>
+                </ul>
+            </div>
+
+            <div class="mistake-count">
+                <h2>Mistake 2</h2>
+                <h4>Dots in the HTML Class Attribute:</h4>
+                <p>Never write periods inside your HTML class attributes.</p>
+                <div class="code-container">
+        <div class="code-header"><span class="code-lang">CSS</span></div>
+        <pre><code>&lt;!-- BROKEN: Will not render --&gt;
+&lt;p class=".urgent .warning"&gt;Hello!&lt;/p&gt;
+
+&lt;!-- CORRECT: Space-separated plain text --&gt;
+&lt;p class="urgent warning"&gt;Hello!&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+
+
+    <!-- ====================================== EXERCISE PAGE ======================================-->
+        <section id="exercise-page">
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h2>Exercise</h2>
+                    <p>Answer the following question</p>
+                </div>
+
+                <div class="question-card" data-question="1">
+                    <h2 class="question-number">Question 1</h2>
+                    <p class="question-text">Look at this HTML snippet: <code class="no-black-bg">&lt;p class="highlight dark-mode"&gt;Welcome back!&lt;/p&gt;</code> Which of the following CSS rules will target this element and turn its background charcoal?</p>
+                    <div class="options-container">
+                        <button class="option-btn"><code class="no-black-bg">.highlight .dark-mode { background: charcoal; }</code></button>
+                        <button class="option-btn"  data-correct="true"><code class="no-black-bg">.highlight.dark-mode { background: charcoal; }</code></button>
+                        <button class="option-btn"><code class="no-black-bg">p.highlight, .dark-mode { background: charcoal; }</code></button>
+                        <button class="option-btn"><code class="no-black-bg">p[class="highlight"] { background: charcoal; }</code></button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="2">
+                    <h2 class="question-number">Question 2</h2>
+                    <p class="question-text">What is the exact 3-column specificity score <code class="no-black-bg">[ID, Class, Element]</code></button> for the chained selector <code class="no-black-bg">main.side-bar.dark-theme</code>?</p>
+                    <div class="options-container">
+                        <button class="option-btn">0, 1, 2</button>
+                        <button class="option-btn" data-correct="true">0, 2, 1</button>
+                        <button class="option-btn">1, 2, 0</button>
+                        <button class="option-btn">0, 3, 0</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="3">
+                    <h2 class="question-number">Question 3</h2>
+                    <p class="question-text">What happens if you write a CSS selector as <code class="no-black-bg">p.accent.highlight</code> but the HTML element is written as <code class="no-black-bg">&lt;p class="highlight accent"&gt;</code>?</p>
+                    <div class="options-container">
+                        <button class="option-btn">The style fails because the class names in the HTML are in a different order than the CSS.</button>
+                        <button class="option-btn">The browser throws a syntax error in DevTools because elements cannot carry multiple classes.</button>
+                        <button class="option-btn" data-correct="true">The style applies perfectly because class order does not matter in HTML or in chained CSS selectors.</button>
+                        <button class="option-btn">The browser only applies the <code class="no-black-bg">.highlight</code> styles.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="4">
+                    <h2 class="question-number">Question 4</h2>
+                    <p class="question-text">If your stylesheet contains the following two rules:</p>
+                    <div class="code-container">
+                        <pre><code>.alert { color: blue; }
+    .alert.urgent { color: red; }</code></pre>
+                    </div>
+                    <p>What color will the text display inside &lt;p class="alert urgent"&gt;Hello&lt;/p&gt;, and why?</p>
+
+                    <div class="options-container">
+                        <button class="option-btn">Blue, because <code class="no-block-bg">.alert</code> is written first in the stylesheet.</button>
+                        <button class="option-btn"  data-correct="true">Red, because <code class="no-black-bg">.alert.urgent</code> has a higher specificity score 0, 2, 0 than <code class="no-black-bg">.alert</code> 0, 1, 0.</button>
+                        <button class="option-btn">Red, because the browser defaults to its User Agent stylesheet.</button>
+                        <button class="option-btn">Charcoal, because conflicting classes cancel each other out.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+
+                <div class="exercise-navigation">
+                    <button class="nav-btn" id="prev-btn">Previous</button>
+                    <button class="nav-btn" id="next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- ======================================= Navigation =====================================-->
+        <div class="topic-nav">
+            <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
+            <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
+        </div>
+
+</div>
