@@ -1,71 +1,95 @@
-.fc-container {
-    background: var(--bg-surface);
-    padding:40px;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    gap: 60px;
-    margin-block: 30px 50px;
-}
+/* ========================================= FLOW CHART TOP TO BOTTOM =================================*/   
+   .fc-container {
+        background: var(--bg-surface);
+        padding:40px;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        margin-block: 30px 50px;
+    }
 
-.fc-head-foot {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    padding-inline: 60px;
-    text-align: center;
-}
+    .fc-head-foot {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        padding-inline: 60px;
+        text-align: center;
+    }
 
-.grid-box {
-    display: grid;
-    grid-template-columns: repeat(2 , 1fr);
-    gap: 30px;
-    min-height: 120px;
-}
-
-
-
-
-/* ============================= Box content area ================================== */
-.fc-box {
-    background: var(--bg-base);
-    padding: 20px;
-    padding-inline-start: 0;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgb(0, 0, 0, 0.25);
-    border: 2px solid var(--border-color);
-    display: flex;
-    flex-direction: row;
-    gap:20px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.fc-box p {
-    margin: 0;
-}
-
-.fc-box:hover {
-    transition: 0.3s ease;
-    border-color: var(--accent-primary);
-}
+    .grid-box {
+        display: grid;
+        grid-template-columns: repeat(2 , 1fr);
+        gap: 30px;
+        min-height: 120px;
+    }
 
 
 
-/* =========================== number section ========================*/
-.box-number {
-    padding-inline: 19.5px;
-    background: var(--bg-surface);
-    border-radius: 50%;
-    margin-inline: 10px;   
-}
 
-.box-number p {
-    font-size: 2.5rem;
-    font-weight: 700;
-    width: 25px;
-    text-align: center;
-    color: var(--text-primary);
-}
+    /* ============================= Box content area ================================== */
+    .fc-box {
+        background: var(--bg-base);
+        padding: 20px;
+        padding-inline-start: 0;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgb(0, 0, 0, 0.25);
+        border: 2px solid var(--border-color);
+        display: flex;
+        flex-direction: row;
+        gap:20px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .fc-box p {
+        margin: 0;
+    }
+
+    .fc-box:hover {
+        transition: 0.3s ease;
+        border-color: var(--accent-primary);
+    }
+
+
+
+    /* =========================== number section ========================*/
+    .box-number {
+        padding-inline: 19.5px;
+        background: var(--bg-surface);
+        border-radius: 50%;
+        margin-inline: 10px;   
+    }
+
+    .box-number p {
+        font-size: 2.5rem;
+        font-weight: 700;
+        width: 25px;
+        text-align: center;
+        color: var(--text-primary);
+    }
+
+
+/*================================================ SIDE BY SIDE TABLE ==========================================*/
+
+    .side-by-side {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-block: 30px;
+    }
+
+    .one-side {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        
+    }
+
+    .one-side ul {
+        margin-block: 0;
+    }
+
+    
 

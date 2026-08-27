@@ -15,10 +15,232 @@
         <p>To understand inheritance, let's look at a family tree analogy.</p>
         <p>Just as you might inherit your eye color or hair texture from your parents, HTML elements inherit visual traits from their parent containers.</p>
         <p>In HTML, elements are nested inside one another, forming a clear parent-child hierarchy:</p>
-                
+        
+        <div class="tree-structure">
+            <ul>
+                <li>body<pre>          &lt;---  Great-Grandparent</pre></li>
+                <ul>
+                    <li>main<pre>          &lt;---  Grandparent</pre></li>
+                    <ul>
+                        <li>div<pre>          &lt;---  Parent</pre></li>
+                        <ul>
+                            <li>p<pre>          &lt;---  Child</pre></li>
+                        </ul>
+                    </ul>
+                </ul>
+            </ul>
+        </div>
+
+        <p>In CSS, if you apply a typography style to an ancestor element (like the &lt;body&gt; or a &lt;main&gt;), that style automatically flows down and applies to its descendants (like the &lt;div&gt; or &lt;p&gt;tag).</p>
 
 
 
 
+    <!-- =============================================== Inherited vs. non-inherited property ================================-->
+        <h2>CSS Propeties: Inherited vs non-inherited</h2>
+        <p>Not all CSS properties are inherited. CSS divides properties into two categories based on common-sense layout rules:</p>
 
+
+        <div class="side-by-side">
+            <div class="one-side">
+                <div>
+                    <h4>Inherited Properties</h4>
+                    <p>(Typography & Text Styles)</p>
+                </div>
+                <div>
+                    <ul>
+                        <li>font-family</li>
+                        <li>font-size</li>
+                        <li>font-weight</li>
+                        <li>color</li>
+                        <li>text-align</li>
+                        <li>text-indent</li>
+                        <li>text-transform</li>
+                        <li>line-height</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="one-side">
+                <div>
+                    <h4>Non-Inherited Properties</h4>
+                    <p>(Box Model & Layout Styles)</p>
+                </div>
+                <div>
+                    <ul>
+                        <li>width</li>
+                        <li>height</li>
+                        <li>border</li>
+                        <li>background-color</li>
+                        <li>margin</li>
+                        <li>padding</li>
+                        <li>display</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h4>Why are layout properties non-inherited?</h4>
+        <p>Imagine if you styled your &lt;body&gt; to have a 20px margin and a solid black border. If layout properties were inherited, <strong>every single paragraph, link, and heading inside your body would also get a 20px margin and a border</strong>! Your webpage would become a cluttered, unreadable mess.</p>
+
+    
+        
+    <!-- ================================================= Example Code ==================================================-->
+        <h2>Example Code</h2>
+        <p>Instead of declaring your font family and text color on every individual selector, you can target the body tag at the very top of your stylesheet.</p>
+        
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* We declare styles once on the parent body tag */
+body {
+    font-family: sans-serif; /* Inherited by all descendants */
+    color: #2c3e50;         /* Inherited by all descendants */
+}
+
+/* Specific elements will inherit these styles automatically */
+p {
+    /* No need to declare font-family or color here! */
+    margin: 15px; /* Does NOT inherit to nested tags */
+}
+</code></pre>
+        </div>
+
+
+
+    <!-- ================================================  Overriding Inherited Values =======================================-->
+        <h2>Overriding Inherited Values</h2>
+        <p>If you want a child element to look different from its parent, you can override the inherited value by targeting the child directly. Direct declarations always defeat inherited styles.</p>
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>body {
+    color: blue; /* All text defaults to blue */
+}
+
+/* Overrides the inherited color for H1 tags only */
+h1 {
+    color: red; /* Headings will render red */
+}</code></pre>
+        </div>
+
+
+
+    <!-- ================================================= The inherit Keyword ========================================-->
+        <h2>The inherit Keyword</h2>  
+        <p>Sometimes browser default styles (like blue hyperlink text) prevent elements from inheriting your parent designs. To force an element to inherit a parent style, use the <code class="no-black-bg">inherit</code> keyword.</p>  
+        <div class="code-container">
+            <div class="code-header"><span class="code-lang">CSS</span></div>
+            <pre><code>/* Set text color on the parent navigation bar */
+.nav-bar {
+    color: green;
+}
+
+/* Force links to inherit the green color, ignoring browser defaults */
+.nav-bar a {
+    color: inherit;
+}</code></pre>
+        </div>
+
+
+
+    <!-- ====================================== EXERCISE PAGE ======================================-->
+        <section id="exercise-page">
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <h2>Exercise</h2>
+                    <p>Answer the following question</p>
+                </div>
+
+                <div class="question-card" data-question="1">
+                    <h2 class="question-number">Question 1</h2>
+                    <p class="question-text">Which of the following CSS properties will naturally inherit from a parent container to its nested child elements?</p>
+                    <div class="options-container">
+                        <button class="option-btn">border</button>
+                        <button class="option-btn">margin</button>
+                        <button class="option-btn" data-correct="true">font-family</button>
+                        <button class="option-btn">padding</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="2">
+                    <h2 class="question-number">Question 2</h2>
+                    <p class="question-text">If you declare <code class="no-black-bg">body { color: green; }</code>, why do unstyled hyperlink (<code class="no-black-bg">&lt;a&gt;</code>) elements on your page still display in default browser blue?</p>
+                    <div class="options-container">
+                        <button class="option-btn">The color property is classified as a non-inherited layout property.</button>
+                        <button class="option-btn">Hyperlinks cannot read styles written on the body tag.</button>
+                        <button class="option-btn" data-correct="true">The browser's User Agent default styles target the link directly, overriding the inherited style.</button>
+                        <button class="option-btn">Green is not a supported color value for interactive anchor tags.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="3">
+                    <h2 class="question-number">Question 3</h2>
+                    <p class="question-text">What does the keyword <code class="no-black-bg">inherit</code> do when applied to a CSS property?</p>
+                    <div class="options-container">
+                        <button class="option-btn">It increases the specificity score of the selector to 1,0,0,0.</button>
+                        <button class="option-btn" data-correct="true">It forces the browser to apply the computed value of the parent element to that property.</button>
+                        <button class="option-btn">It prevents the style from being overridden by later cascade declarations.</button>
+                        <button class="option-btn">It removes the element from the normal document layout flow.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="4">
+                    <h2 class="question-number">Question 4</h2>
+                    <p class="question-text">Why do layout-related box model properties like margin and border bypass inheritance?</p>
+                    <div class="options-container">
+                        <button class="option-btn">Because layout elements have no computed value to pass down.</button>
+                        <button class="option-btn" data-correct="true">If they were inherited, every nested child element would repeat the parent's boundaries, breaking the layout.</button>
+                        <button class="option-btn">Layout properties can only be declared inside inline style attributes.</button>
+                        <button class="option-btn">Browsers block margins on nested elements for security purposes.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="question-card" data-question="5">
+                    <h2 class="question-number">Question 5</h2>
+                    <p class="question-text">Look at the following CSS and HTML:</p>
+                    <div class="code-container">
+                        <pre><code>body {
+    color: blue;
+}
+
+main {
+    color: purple;
+}</code></pre>
+                    </div>
+                    <div class="code-container">
+                        <pre><code>&lt;body&gt;
+&lt;main&gt;
+    &lt;span&gt;Hello&lt;/span&gt;
+&lt;/main&gt;
+&lt;/body&gt;</code></pre>
+                    </div>
+                    <p>The <code class="no-black-bg">&lt;span&gt;</code> has no color declared on it directly. What color will its text render?</p>
+                    <div class="options-container">
+                        <button class="option-btn">Blue, because body is the outermost ancestor and always wins.</button>
+                        <button class="option-btn" data-correct="true">Purple, because inheritance pulls from the nearest ancestor with a declared value, not the topmost one.</button>
+                        <button class="option-btn">Black, because two conflicting inherited values cancel each other out.</button>
+                        <button class="option-btn">Violet, because the browser blends both inherited colors together.</button>
+                    </div>
+                    <p class="feedback-message"></p>
+                </div>
+
+                <div class="exercise-navigation">
+                    <button class="nav-btn" id="prev-btn">Previous</button>
+                    <button class="nav-btn" id="next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+
+
+
+    
+    <!-- ======================================= Navigation =====================================-->
+        <div class="topic-nav">
+            <button id="prev-topic-btn" class="topic-nav-btn"> Previous Topic </button>
+            <button id="next-topic-btn" class="topic-nav-btn"> Next Topic </button>
+        </div>
+        
 </div>

@@ -1,7 +1,11 @@
 /* ==================================== MOBILE RESPONSIVENESS ================================== */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     /* Stack the grid into a single column */
     .layout-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-box {
         grid-template-columns: 1fr;
     }
 
