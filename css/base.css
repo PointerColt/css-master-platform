@@ -40,12 +40,12 @@ p {
 
 /* ---------------------------------- Responsive Images ---------------------------------- */
 .image-container {
-    margin: 70px 0;
+    margin: 50px 0;
     text-align: center;
 }
 
 .image-container img {
-    max-width: 80%; /* Strictly prevents the image from breaking out of the screen */
+    max-width: 70%; /* Strictly prevents the image from breaking out of the screen */
     height: auto; /* Keeps the aspect ratio from stretching or squishing */
     border-radius: 6px; /* Matches the rounded corners of your new sidebar buttons */
     border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for your dark theme */
